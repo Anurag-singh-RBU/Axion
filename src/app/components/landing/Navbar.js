@@ -38,7 +38,7 @@ export default function Header() {
             <circle cx="16" cy="16" r="3.5" fill="#B19EEF"/>
         </svg>
         <Link href="/" className="text-white font-bold font-JBM text-xl">
-          PMT
+          AXION
         </Link>
         </div>
 
