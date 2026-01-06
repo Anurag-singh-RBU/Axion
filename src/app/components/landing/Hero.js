@@ -21,9 +21,9 @@ const Hero = () => {
           </Link>
         </div>
 
-        <h1 className="landing-title">
+        <h1 className="landing-title sm:tracking-normal tracking-wide">
           <span className="hero-text-animate mb-2">Tasks Operations</span>
-          <br />
+          <br/>
           <span className="hero-text-animate hero-text-animate-delay whitespace-nowrap">
             For Dedicated Developers
           </span>
@@ -45,5 +45,7 @@ const Hero = () => {
     </div>
   );
 };
+
+
 
 export default Hero;
