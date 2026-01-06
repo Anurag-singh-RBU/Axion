@@ -42,7 +42,7 @@ const Shipping = () => {
         <ElectricBorder
           color="#FFD8AF"
           speed={0.35}
-          chaos={0.07}
+          chaos={0.09}
           style={{
             borderRadius: 16,
             padding: 0,
@@ -100,7 +100,7 @@ const Shipping = () => {
         <ElectricBorder
           color="#A3FFD8"
           speed={0.35}
-          chaos={0.07}
+          chaos={0.09}
           style={{
             borderRadius: 16,
             padding: 0,
