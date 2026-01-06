@@ -21,7 +21,7 @@ const Hero = () => {
           </Link>
         </div>
 
-        <h1 className="landing-title sm:tracking-normal tracking-wide">
+        <h1 className="landing-title sm:tracking-normal! tracking-normal!">
           <span className="hero-text-animate mb-2">Tasks Operations</span>
           <br/>
           <span className="hero-text-animate hero-text-animate-delay whitespace-nowrap">

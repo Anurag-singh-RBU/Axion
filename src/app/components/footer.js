@@ -94,7 +94,7 @@ export default function Footer() {
             <div className="grid gap-12 md:grid-cols-3">
               {Object.entries(footerLinks).map(([section, links]) => (
                 <div key={section} className="space-y-5">
-                  <h4 className="text-white font-bold text-xs uppercase tracking-widest bg-gradient-to-r from-[#5227FF] via-[#B19EEF] to-[#5227FF] bg-clip-text text-transparent">
+                  <h4 className="text-white font-bold text-sm uppercase tracking-widest bg-gradient-to-r from-[#5227FF] via-[#B19EEF] to-[#5227FF] bg-clip-text text-transparent">
                     {section}
                   </h4>
                   <ul className="space-y-3.5">
