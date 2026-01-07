@@ -680,6 +680,48 @@ body{
   }
 }
 
+/* iPad specific styles (768px - 1024px) - must come after general 1024px rule */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .landing-content {
+    margin-top: 120px !important;
+    padding: 0 2.5em;
+    min-height: auto;
+    gap: 1.5rem;
+  }
+
+  .landing-title {
+    font-size: 3rem !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+  }
+
+  .landing-subtitle {
+    font-size: 1rem !important;
+    max-width: 90% !important;
+    margin-bottom: 2rem;
+  }
+
+  .hero-main-content {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0 !important;
+    margin-bottom: 0;
+  }
+
+  .hero-button-delay {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-new-badge-container {
+    margin-bottom: 1.2rem;
+  }
+}
+
 @media (max-width: 950px) {
   .landing-title {
     font-size: 3.6rem;
