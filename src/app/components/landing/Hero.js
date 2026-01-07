@@ -34,7 +34,7 @@ const Hero = () => {
         </p>
 
         <div className="hero-button-delay flex gap-4 opacity-100 z-10">
-            <button className="block [font-family:var(--font-geist-sans)] px-4 py-2 text-center bg-brand-blue rounded-lg text-sm font-medium text-white [text-shadow:0px_1px_1px_rgba(0,0,0,0.16)] shadow-[0px_1px_4px_-1px_rgba(30,31,37,0.38)] bg-[#2579F4] hover:bg-[#196ae3] cursor-pointer transition-background duration-150 ease-in-out">
+            <button className="block [font-family:var(--font-geist-sans)] px-4 py-2 text-center bg-brand-blue rounded-lg text-sm font-medium text-white [text-shadow:0px_1px_1px_rgba(0,0,0,0.16)] shadow-[0px_1px_4px_-1px_rgba(30,31,37,0.38)] bg-[#5227FF] hover:bg-[#196ae3] cursor-pointer transition-background duration-150 ease-in-out">
               Get Started
             </button>
             <button className="justify-center gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 has-[>svg]:px-3 flex items-center cursor-pointer [font-family:var(--font-geist-sans)] gap-x-1.5 rounded-lg py-2 text-sm font-medium hover:bg-gray-50 transition-colors duration-150 ease-in-out">
