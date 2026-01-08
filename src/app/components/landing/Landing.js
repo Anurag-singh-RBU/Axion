@@ -1,9 +1,9 @@
 import PlasmaWaveV2 from '@/(Plasma)/PlasmaV2'
 import Image from 'next/image'
-import React from 'react'
-import Header from './Navbar'
-import Hero from './Hero'
 import Footer from '../footer'
+import Hero from './Hero'
+import Header from './Navbar'
+import SectionCards from './SectionCards'
 import Shipping from './Shipping'
 
 const Landing = () => {
@@ -34,7 +34,7 @@ const Landing = () => {
           <Shipping></Shipping>
         </div>
       </div>
-
+      <SectionCards/>
       <Footer/>
     </div>
   )
