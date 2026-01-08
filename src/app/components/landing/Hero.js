@@ -16,7 +16,7 @@ const Hero = () => {
     <div className="landing-content font-FT">
       <div className="landing-gradient-blur" aria-hidden="true"/>
 
-      <div className="hero-main-content sm:-mt-85 -mt-35 overflow-x-hidden ">
+      <div className="hero-main-content sm:-mt-100 -mt-35 overflow-x-hidden ">
         <div className="hero-tag-fade">
           <Link href="/tools" className="hero-new-badge-container max-w-full">
             <span className="flex tracking-wider hero-new-badge font-HG justify-center items-center">
@@ -51,7 +51,7 @@ const Hero = () => {
             </button>
         </div>
 
-        <div className="mt-16 hero-features-container w-full md:z-auto z-20">
+        {/* <div className="mt-8 hero-features-container w-full md:z-auto z-20">
           <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-8 lg:gap-12 py-8 px-6 bg-transparent rounded-3xl max-w-6xl mx-auto place-items-center md:place-items-stretch">
             {features.map((feature, index) => {
               const Icon = feature.icon;
@@ -65,7 +65,7 @@ const Hero = () => {
               );
             })}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
