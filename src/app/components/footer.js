@@ -10,7 +10,7 @@ export default function Footer() {
     Product: [
       { label: 'Home', href: '/' },
       { label: 'Docs', href: '/docs' },
-      { label: 'About', href: '/showcase' },
+      { label: 'showcase', href: '/showcase' },
       { label: 'Tools', href: '/tools' },
     ],
     Company: [

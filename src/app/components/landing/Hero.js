@@ -1,8 +1,17 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Package, Zap, CheckCircle, Cpu, Bot, Feather } from "lucide-react";
 import { SparklesIcon } from "@/components/ui/sparkles";
 
 const Hero = () => {
+  const features = [
+    { icon: Package, label: 'Free and\nopen-source' },
+    { icon: Zap, label: 'Easy\nto use' },
+    { icon: CheckCircle, label: 'Production\nready' },
+    { icon: Cpu, label: 'Hybrid\nengine' },
+    { icon: Bot, label: 'Robot\nfriendly' },
+    { icon: Feather, label: 'Tiny\nfootprint' },
+  ];
+
   return (
     <div className="landing-content font-FT">
       <div className="landing-gradient-blur" aria-hidden="true"/>
@@ -40,6 +49,22 @@ const Hero = () => {
             <button className="justify-center gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 has-[>svg]:px-3 flex items-center cursor-pointer [font-family:var(--font-geist-sans)] gap-x-1.5 rounded-lg py-2 text-sm font-medium hover:bg-gray-50 transition-colors duration-150 ease-in-out">
               Learn More
             </button>
+        </div>
+
+        <div className="mt-16 hero-features-container w-full md:z-auto z-20">
+          <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-8 lg:gap-12 py-8 px-6 bg-transparent rounded-3xl max-w-6xl mx-auto place-items-center md:place-items-stretch">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <div key={index} className="flex flex-col items-center gap-2 text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-105 w-24">
+                  <div className="p-3 rounded-xl hover:scale-110 transition-transform flex-shrink-0">
+                    <Icon size={28} strokeWidth={1.5} className="text-white" />
+                  </div>
+                  <p className="text-sm text-center font-medium whitespace-pre-line leading-tight">{feature.label}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
