@@ -5,6 +5,7 @@ import Hero from './Hero'
 import Header from './Navbar'
 import SectionCards from './SectionCards'
 import Shipping from './Shipping'
+import Tools from './Tools'
 
 const Landing = () => {
   return (
@@ -32,6 +33,7 @@ const Landing = () => {
           <Header/>
           <Hero/>
           <Shipping></Shipping>
+          <Tools/> 
         </div>
       </div>
       <SectionCards/>
