@@ -7,7 +7,7 @@ const Hero = () => {
     <div className="landing-content font-FT">
       <div className="landing-gradient-blur" aria-hidden="true"/>
 
-      <div className="hero-main-content sm:-mt-100 -mt-35 overflow-x-hidden ">
+      <div className="hero-main-content sm:-mt-85 -mt-35 overflow-x-hidden ">
         <div className="hero-tag-fade">
           <Link href="/tools" className="hero-new-badge-container max-w-full">
             <span className="flex tracking-wider hero-new-badge font-HG justify-center items-center">
