@@ -1,9 +1,9 @@
 'use client';
 
-import { useState , useEffect } from 'react';
+import ElectricBorder from '@/(Plasma)/ElectricBorder';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import ElectricBorder from '@/(Plasma)/ElectricBorder';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const pathname = usePathname();
@@ -22,7 +22,7 @@ export default function Header() {
 
   useEffect(() => {
     if (animating) {
-      const timeout = setTimeout(() => setAnimating(false), 200); 
+      const timeout = setTimeout(() => setAnimating(false), 200);
       return () => clearTimeout(timeout);
     }
   }, [animating]);
