@@ -33,10 +33,10 @@ const Landing = () => {
           <Header/>
           <Hero/>
           <Shipping></Shipping>
+          <SectionCards/>
           <Tools/> 
         </div>
       </div>
-      <SectionCards/>
       <Footer/>
     </div>
   )

@@ -318,17 +318,6 @@ body{
   gap: 0.4em;
 }
 
-.hero-new-badge-container:hover {
-  box-shadow:
-    0 0 60px rgba(124, 58, 237, 0.2),
-    0 0 120px rgba(139, 92, 246, 0.2),
-    0 0 180px rgba(109, 40, 217, 0.2),
-    0 12px 40px rgba(0, 0, 0, 0.4);
-  transform: scale(1.01);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation-duration: 1.5s;
-}
-
 .hero-split {
   white-space: nowrap !important;
   overflow: visible !important;

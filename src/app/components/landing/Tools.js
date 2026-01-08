@@ -28,19 +28,19 @@ const Tools = () => {
   ];
 
   return (
-    <div className="w-full mt-20">
+    <div className="w-full sm:-mt-40">
       <div className="w-full flex justify-center mb-10">
         <div className="text-center">
           <h2 className="text-[#C9BFFF] font-JBM text-5xl mb-4 font-bold tracking-normal z-20">
             Tools
           </h2>
-          <p className="text-white text-base font-JBM tracking-normal z-20">
+          <p className="text-white sm:text-base text-sm font-JBM tracking-normal z-20">
             Free utilities to boost your workflow
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-stretch justify-center sm:max-w-5xl sm:gap-12 gap-15 mx-auto z-20">
+      <div className="flex flex-col md:flex-row items-center justify-center sm:max-w-5xl sm:gap-12 gap-8 mx-auto z-20">
 
         {tools.map((tool, index) => (
           <div
@@ -57,17 +57,10 @@ const Tools = () => {
 
             <div className="text-[#E9F8FF] flex flex-col gap-3 z-20 flex-1">
               <h2 className="eb-demo-title z-20">{tool.title}</h2>
-              <p className="text-white text-sm leading-relaxed flex-1 opacity-70 tracking-widest z-20">
+              <p className="text-white text-sm leading-relaxed flex-1 opacity-70 tracking-widest z-20 text-justify">
                 {tool.description}
               </p>
             </div>
-
-            <Link
-              href={tool.href}
-              className="mt-4 inline-flex items-center text-white text-sm font-FT hover:text-[#C9BFFF] transition-colors duration-300 z-20 opacity-70"
-            >
-              Try it out <ArrowRight size={16} className="ml-1" />
-            </Link>
           </div>
         ))}
       </div>
