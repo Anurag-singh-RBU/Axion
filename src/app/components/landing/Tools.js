@@ -1,6 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import Link from "next/link";
-import { ArrowRight, Palette, Shapes, Image } from "lucide-react";
+import { Palette, Shapes, Image } from "lucide-react";
 
 const Tools = () => {
   const tools = [
@@ -8,29 +8,29 @@ const Tools = () => {
       title: "Background Studio",
       description:
         "Explore animated backgrounds. Customize effects, colors, and speed. Export as image or code.",
-      icon: <Palette className="w-6 h-6 text-[#C9BFFF]" />,
+      icon: <Palette className="w-6 h-6 text-[#C9BFFF]"/>,
       href: "/tools/background-studio",
     },
     {
       title: "Shape Magic",
       description:
         "Create inner rounded corners between shapes of different sizes. Export as code or SVG.",
-      icon: <Shapes className="w-6 h-6 text-[#C9BFFF]" />,
+      icon: <Shapes className="w-6 h-6 text-[#C9BFFF]"/>,
       href: "/tools/shape-magic",
     },
     {
       title: "Texture Lab",
       description:
         "Apply effects to your images. Add noise, dithering, halftone, ASCII art, and more.",
-      icon: <Image className="w-6 h-6 text-[#C9BFFF]" />,
+      icon: <Image className="w-6 h-6 text-[#C9BFFF]"/>,
       href: "/tools/texture-lab",
     },
   ];
 
   return (
-    <div className="w-full sm:mt-0">
+    <div className="w-full">
       <div className="w-full flex justify-center mb-10">
-        <div className="text-center">
+        <div className="text-center mt-15 sm:mt-0">
           <h2 className="text-[#C9BFFF] font-JBM text-5xl mb-4 font-bold tracking-normal z-20">
             Tools
           </h2>
@@ -47,10 +47,8 @@ const Tools = () => {
             key={index}
             className="sm:w-[300px] w-full min-w-[300px] flex flex-col rounded-[16px] bg-[#0a0018] border border-[#C9BFFF]/20 p-6 z-20 hover:border-[#C9BFFF]/40 transition-all duration-300 font-FT"
             style={{
-              background:
-                "linear-gradient(180deg, rgba(82, 39, 255, 0.04), rgba(82, 39, 255, 0.01))",
-            }}
-          >
+              background:"linear-gradient(180deg, rgba(82, 39, 255, 0.04), rgba(82, 39, 255, 0.01))",
+            }}>
             <div className="w-12 h-12 rounded-lg bg-[#C9BFFF]/15 flex items-center justify-center mb-4">
               {tool.icon}
             </div>

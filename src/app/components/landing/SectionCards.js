@@ -29,7 +29,7 @@ const ButtonGroup = () => (
 
 export default function SectionCards() {
   return (
-    <div className="h-auto text-white px-6 sm:p-8 md:p-16 pt-13 relative sm:mt-30 mt-10">
+    <div className="h-auto text-white px-6 sm:p-8 md:p-16 pt-13 relative sm:mt-30 mt-10 sm:mb-0">
       
       {/* Top Horizontal Line */}
        <div className="absolute top-10 left-8 right-8 h-[1px] bg-white/9"></div> 

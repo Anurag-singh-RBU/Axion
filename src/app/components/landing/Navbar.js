@@ -51,13 +51,7 @@ export default function Header() {
           {active === item && (
             <span
               className="absolute bottom-0 left-1/2 bg-white rounded-full top-[20px]"
-              style={{
-                width: animating ? '24px' : '6px',
-                height: '6px',
-                transform: 'translateX(-50%)',
-                transition: 'width 0.3s ease'
-              }}
-            />
+              style={{ width: animating ? '24px' : '6px', height: '6px', transform: 'translateX(-50%)', transition: 'width 0.3s ease' }}/>
           )}
         </div>
       ))}
