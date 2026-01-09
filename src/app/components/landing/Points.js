@@ -3,7 +3,7 @@ import { Layers, LayoutGrid, Filter, Flame } from "lucide-react";
 export default function Points() {
   return (
     <section className="w-full bg-transparent md:-mt-30 mt-15 mx-auto sm:mb-40 md:mb-40 mb-20 font-FT">
-      <div className="mx-auto sm:max-w-6xl px-8 sm:px-0">
+      <div className="mx-auto sm:max-w-6xl px-12 sm:px-0">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
