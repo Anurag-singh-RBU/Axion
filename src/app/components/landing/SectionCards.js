@@ -11,17 +11,17 @@ const SectionCard = ({ title, description, children }) => (
 const ButtonGroup = () => (
   <div className="flex flex-wrap gap-3">
     <button className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors w-full sm:w-auto">
-      <Paperclip className="w-4 h-4 text-gray-400" />
+      <Paperclip className="w-4 h-4 text-gray-400"/>
       <span className="text-gray-300 text-sm">Attach</span>
     </button>
 
     <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors w-full sm:w-auto">
-      <Search className="w-4 h-4 text-gray-400" />
+      <Search className="w-4 h-4 text-gray-400"/>
       <span className="text-gray-300 text-sm">Search</span>
     </button>
 
     <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors w-full sm:w-auto">
-      <Lightbulb className="w-4 h-4 text-gray-400" />
+      <Lightbulb className="w-4 h-4 text-gray-400"/>
       <span className="text-gray-300 text-sm">Reason</span>
     </button>
   </div>
@@ -64,15 +64,13 @@ export default function SectionCards() {
             </SectionCard>
           </div>
 
-          {/* Right Section */}
           <div className="sm:space-y-4">
             <SectionCard
               title="Automation Tools"
-              description="Integrate and automate project tools for seamless task flow and real time tracking."
-            >
+              description="Integrate and automate project tools for seamless task flow and real time tracking.">
               <div className="relative">
                 {/* Code Block */}
-                <div className="relative z-10 bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 shadow-2xl">
+                <div className="relative z-10 bg-linear-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 shadow-2xl">
                   <div className="font-mono text-sm text-gray-300 space-y-1">
                     <div className="text-gray-200 font-JBM tracking-wider">AXION</div>
                     <div className="mt-3 text-xs space-y-1">
@@ -95,9 +93,8 @@ export default function SectionCards() {
                     <input
                       type="text"
                       placeholder="Ask about project deadlines or task priorities."
-                      className="w-full bg-transparent border-none outline-none font-HG tracking-wider text-white placeholder-gray-500 text-md mb-6"
-                    />
-                    <ButtonGroup />
+                      className="w-full bg-transparent border-none outline-none font-HG tracking-wider text-white placeholder-gray-500 text-md mb-6"/>
+                    <ButtonGroup/>
                   </div>
                 </div>
               </div>

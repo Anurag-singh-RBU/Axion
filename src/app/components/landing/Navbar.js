@@ -1,6 +1,6 @@
 'use client';
 
-import ElectricBorder from '@/(Plasma)/ElectricBorder';
+import ElectricBorder from '@/Plasma/ElectricBorder'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -51,7 +51,7 @@ export default function Header() {
         <div
           key={item}
           onClick={() => handleClick(item)}
-          className={`relative pb-1 transition-colors duration-300 ${active === item ? 'text-white' : 'text-[#B19EEF]'}`}>
+          className={`relative pb-1 transition-colors duration-300 ${active === item ? 'text-white' : 'text-gray-300'}`}>
           {item}
           {active === item && (
             <span

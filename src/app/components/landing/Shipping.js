@@ -1,17 +1,14 @@
 import React from "react";
-import ElectricBorder from "@/(Plasma)/ElectricBorder";
+import ElectricBorder from "@/Plasma/ElectricBorder";
 
 const Shipping = () => {
   return (
     <div>
       {/* <div className="w-full flex justify-center mb-10 sm:-mt-100 -mt-50"> */}
-      
+
       {/* <div className="w-full flex justify-center mb-10 -mt-50 sm:-mt-100 md:mt-20 lg:-mt-100"> */}
       <div className="w-full flex justify-center mb-10 -mt-50 sm:-mt-100 md:mt-20 xl:-mt-100">
-
-
-
-        <h2 className="text-white font-JBM text-4xl mb-5 font-bold tracking-wide z-20">
+        <h2 className="text-[#C9BFFF] font-JBM text-5xl mb-5 font-bold tracking-wide z-20">
           Features
         </h2>
       </div>

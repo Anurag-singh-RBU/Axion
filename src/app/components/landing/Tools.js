@@ -7,7 +7,7 @@ const Tools = () => {
     {
       title: "Background Studio",
       description:
-        "Explore animated backgrounds. Customize effects, colors, and speed. Export as video, image, or code.",
+        "Explore animated backgrounds. Customize effects, colors, and speed. Export as image or code.",
       icon: <Palette className="w-6 h-6 text-[#C9BFFF]" />,
       href: "/tools/background-studio",
     },
@@ -28,7 +28,7 @@ const Tools = () => {
   ];
 
   return (
-    <div className="w-full sm:-mt-40">
+    <div className="w-full sm:mt-0">
       <div className="w-full flex justify-center mb-10">
         <div className="text-center">
           <h2 className="text-[#C9BFFF] font-JBM text-5xl mb-4 font-bold tracking-normal z-20">
