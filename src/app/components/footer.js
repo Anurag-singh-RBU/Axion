@@ -48,14 +48,8 @@ export default function Footer() {
           <div className="grid gap-16 md:grid-cols-2 items-start mb-16">
             <div className="space-y-3">
               <div className="flex gap-4 items-center">
-                <div className="relative p-3 rounded-xl bg-linear-to-br from-[#5227FF] via-[#6B3EFF] to-[#B19EEF] shadow-lg shadow-[#5227FF]/30">
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <rect x="3" y="3" width="26" height="26" rx="7" fill="#060010" />
-                    <rect x="9.5" y="9.5" width="13" height="13" rx="3.5" fill="#B19EEF" />
-                    <circle cx="16" cy="16" r="3.5" fill="#5227FF" />
-                  </svg>
-                </div>
-                <div>
+              <img src="/logo.png" alt="Axion Logo" className="h-15 w-15 object-contain"/>
+              <div>
                   <span className="text-white font-bold text-2xl block leading-none font-JBM mb-1">Axion</span>
                   <span className="text-[#B19EEF] text-sm font-medium font-HG tracking-wide">Task Operations</span>
                 </div>

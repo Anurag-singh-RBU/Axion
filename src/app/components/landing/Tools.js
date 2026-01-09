@@ -40,12 +40,12 @@ const Tools = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center sm:max-w-5xl sm:gap-12 gap-8 mx-auto z-20">
+      <div className="flex flex-col md:flex-row items-center justify-center sm:max-w-5xl sm:px-0 px-8 sm:gap-12 gap-8 mx-auto z-20">
 
         {tools.map((tool, index) => (
           <div
             key={index}
-            className="w-[300px] min-w-[300px] flex flex-col rounded-[16px] bg-[#0a0018] border border-[#C9BFFF]/20 p-6 z-20 hover:border-[#C9BFFF]/40 transition-all duration-300 font-FT"
+            className="sm:w-[300px] w-full min-w-[300px] flex flex-col rounded-[16px] bg-[#0a0018] border border-[#C9BFFF]/20 p-6 z-20 hover:border-[#C9BFFF]/40 transition-all duration-300 font-FT"
             style={{
               background:
                 "linear-gradient(180deg, rgba(82, 39, 255, 0.04), rgba(82, 39, 255, 0.01))",

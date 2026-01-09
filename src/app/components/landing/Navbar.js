@@ -31,12 +31,7 @@ export default function Header() {
     <header className="sticky top-0 py-3 z-50 bg-transparent font-FT">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <div className="flex gap-3 justify-center items-center">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="3" width="26" height="26" rx="7" fill="#5227FF"/>
-            <rect x="9.5" y="9.5" width="13" height="13" rx="3.5" fill="#13004D"/>
-            <circle cx="16" cy="16" r="3.5" fill="#B19EEF"/>
-        </svg>
+        <img src="/logo.png" alt="Axion Logo" className="h-10 w-10 object-contain"/>
         <Link href="/" className="text-white font-bold font-JBM text-xl">
           AXION
         </Link>
