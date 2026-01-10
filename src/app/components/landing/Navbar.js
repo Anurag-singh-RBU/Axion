@@ -14,7 +14,7 @@ export default function Header() {
   const [active, setActive] = useState('Home');
   const [animating, setAnimating] = useState(false);
 
-  const items = ['Home', 'Docs', 'Showcase', 'Tools'];
+  const items = ['Home', 'Docs', 'Dashboard', 'Kanban'];
 
   const handleClick = (item) => {
     setActive(item);
@@ -32,10 +32,12 @@ export default function Header() {
     <header className="sticky top-0 py-3 z-50 bg-transparent font-FT">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <div className="flex gap-3 justify-center items-center">
-        <img src="/logo.png" alt="Axion Logo" className="h-10 w-10 object-contain"/>
-        <Link href="/" className="text-white font-bold font-JBM text-xl">
-          AXION
-        </Link>
+          <div className="bg-white rounded-full mb-2">
+            <img src="/logo.png" alt="Axion Logo" className="h-8 w-8 object-cover rounded-md"/>
+          </div>
+          <Link href="/" className="text-white font-bold font-JBM text-xl">
+            AXION
+          </Link>
         </div>
 
         <nav className="hidden md:flex items-center gap-3">

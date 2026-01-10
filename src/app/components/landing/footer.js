@@ -48,7 +48,13 @@ export default function Footer() {
           <div className="grid gap-16 md:grid-cols-2 items-start mb-16">
             <div className="space-y-3">
               <div className="flex gap-4 items-center">
-              <img src="/logo.png" alt="Axion Logo" className="h-15 w-15 object-contain"/>
+                <div className="bg-white rounded-full -mt-4">
+                  <img
+                    src="/logo.png"
+                    alt="Axion Logo"
+                    className="h-12 w-12 object-cover"
+                  />
+                </div>
               <div>
                   <span className="text-white font-bold text-2xl block leading-none font-JBM mb-1">Axion</span>
                   <span className="text-[#B19EEF] text-sm font-medium font-HG tracking-wide">Task Operations</span>

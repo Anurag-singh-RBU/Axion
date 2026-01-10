@@ -1,8 +1,11 @@
 import React from 'react'
+import LoginPage from '../../components/Authentication/LoginCard'
 
 const SignInPage = () => {
   return (
-    <div className='text-white'>Sign In Page</div>
+    <div>
+      <LoginPage></LoginPage>
+    </div>
   )
 }
 

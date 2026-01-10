@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${inter.variable} ${jetBrainsMono.variable} ${figtree.variable} ${hankenGrotesk.variable} antialiased`}>
+        className={`${geistSans.variable} ${inter.variable} ${jetBrainsMono.variable} ${figtree.variable} ${hankenGrotesk.variable} antialiased`} suppressHydrationWarning>
         {children}
       </body>
     </html>
