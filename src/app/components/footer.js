@@ -36,11 +36,11 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#060010] border-t border-[#B19EEF]/15 font-FT overflow-hidden mt-20">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -bottom-40 -right-40 w-[700px] h-[700px]rounded-full"/>
+        <div className="absolute -bottom-40 -right-40 w-175 h-[700px]rounded-full"/>
         <div
-          className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full"/>
+          className="absolute -top-40 -left-40 w-150 h-150 rounded-full"/>
         <div
-          className="absolute top-1/2 left-1/2 w-[400px] h-[400px]"/>
+          className="absolute top-1/2 left-1/2 w-100 h-100"/>
       </div>
 
       <div className="relative z-10">
@@ -94,7 +94,7 @@ export default function Footer() {
             <div className="grid gap-12 md:grid-cols-3">
               {Object.entries(footerLinks).map(([section, links]) => (
                 <div key={section} className="space-y-5">
-                  <h4 className="text-white font-bold text-sm uppercase tracking-widest bg-gradient-to-r from-[#5227FF] via-[#B19EEF] to-[#5227FF] bg-clip-text text-transparent">
+                  <h4 className="text-white font-bold text-sm uppercase tracking-widest bg-linear-to-r from-[#5227FF] via-[#B19EEF] to-[#5227FF] bg-clip-text">
                     {section}
                   </h4>
                   <ul className="space-y-3.5">
@@ -114,7 +114,7 @@ export default function Footer() {
           </div>
 
           <div className="relative my-4 md:my-5">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#5227FF]/30 via-[#B19EEF]/20 to-transparent"/>
+            <div className="h-px bg-linear-to-r from-transparent via-[#5227FF]/30 to-transparent"/>
           </div>
 
           <div className="flex flex-col items-center justify-center text-center gap-0 py-1 leading-tight font-HG" style={{wordSpacing: "2px"}}>

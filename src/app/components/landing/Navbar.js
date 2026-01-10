@@ -55,7 +55,7 @@ export default function Header() {
           {item}
           {active === item && (
             <span
-              className="absolute bottom-0 left-1/2 bg-white rounded-full top-[20px]"
+              className="absolute bottom-0 left-1/2 bg-white rounded-full top-5"
               style={{
                 width: animating ? '24px' : '6px',
                 height: '6px',
