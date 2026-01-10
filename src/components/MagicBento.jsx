@@ -450,7 +450,7 @@ const GlobalSpotlight = ({
 
 const BentoCardGrid = ({ children, gridRef }) => (
   <div
-    className="bento-section grid gap-2 p-3 max-w-[54rem] select-none relative"
+    className="bento-section grid gap-2 p-3 max-w-216 select-none relative"
     style={{ fontSize: 'clamp(1rem, 0.9rem + 0.5vw, 1.5rem)' }}
     ref={gridRef}>
     {children}
@@ -654,7 +654,7 @@ const MagicBento = ({
                   enableTilt={enableTilt}
                   clickEffect={clickEffect}
                   enableMagnetism={enableMagnetism}>
-                  <span className="card__label text-base font-bold font-JBM bg-gradient-to-r from-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow">
+                  <span className="card__label text-base font-bold font-JBM bg-linear-to-r from-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow">
                     {card.label}
                   </span>
                   <div className="card__content flex flex-col relative text-white">
@@ -782,10 +782,9 @@ const MagicBento = ({
                   el.addEventListener('click', handleClick);
                 }}>
                 <div className="card__header flex justify-between items-center gap-3 relative text-white font-JBM px-3 py-2">
-                  <span className="card__label text-base font-bold font-JBM tracking-wide bg-gradient-to-r from-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow">
+                  <span className="card__label text-base font-bold font-JBM tracking-wide bg-linear-to-r from-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow">
                     {card.label}
                   </span>
-                  {/* Decorative icon or chip for extra context */}
                   <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/10 border border-white/30 shadow-md">
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                       <circle cx="10" cy="10" r="8" stroke="rgba(132,0,255,0.45)" strokeWidth="2"/>
@@ -810,7 +809,6 @@ const MagicBento = ({
                   </p>
                   <div className="flex mt-2 space-x-2">
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-purple-800/20 text-xs font-semibold text-purple-200 tracking-tight border border-purple-800/30">
-                      {/* Example context token - add your detail */}
                       <svg className="mr-1" width="13" height="13" fill="none" viewBox="0 0 13 13">
                         <circle cx="6.5" cy="6.5" r="6" stroke="rgba(132,0,255,0.28)" strokeWidth="1.2"/>
                         <path d="M6.5 3.5V6.5L8.5 8" stroke="#8400FF" strokeWidth="1.2" strokeLinecap="round"/>
