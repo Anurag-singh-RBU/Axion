@@ -42,7 +42,7 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-3">
 
-        <div className="bg-neutral-950 rounded-[40px] px-6 py-3 inline-flex justify-center items-center gap-8 text-sm select-none cursor-pointer relative overflow-visible"
+        <div className="bg-neutral-950 rounded-[40px] font-FT tracking-wider px-6 py-3 inline-flex justify-center items-center gap-8 text-sm select-none cursor-pointer relative overflow-visible"
           style={{boxShadow: '0 1.5px 8px 0 #B19EEF33, 0 0px 0px 1.5px #B19EEF15'}}>
           <span className="pointer-events-none absolute inset-0 z-0 rounded-[40px] bg-linear-to-tr from-[#b19eef22] via-[#5227ff22] to-transparent blur-xl opacity-50 animate-pulse" />
         {items.map(item => (
