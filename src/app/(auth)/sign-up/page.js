@@ -1,9 +1,12 @@
 import React from 'react'
+import SignInPage from '../../components/Authentication/SignUpCard'
 
-const page = () => {
+const SignUpPage = () => {
   return (
-    <div>page</div>
+    <div>
+      <SignInPage></SignInPage>
+    </div>
   )
 }
 
-export default page
+export default SignUpPage
