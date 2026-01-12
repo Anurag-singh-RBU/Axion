@@ -1,8 +1,11 @@
 import React from 'react'
+import SignUpPage from '../../components/Authentication/SignUpCard'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <SignUpPage></SignUpPage>
+    </div>
   )
 }
 
