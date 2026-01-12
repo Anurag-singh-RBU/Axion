@@ -32,7 +32,7 @@ export default function SectionCards() {
     <div className="h-auto text-white px-6 sm:p-8 md:p-16 pt-13 relative sm:mt-30 mt-10 sm:mb-0">
       
       {/* Top Horizontal Line */}
-       <div className="absolute top-10 left-8 right-8 h-[1px] bg-white/9"></div> 
+       <div className="absolute top-10 left-8 right-8 h-px bg-white/9"></div> 
 
       <div className="max-w-7xl mx-auto relative">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 relative z-10">
@@ -43,7 +43,7 @@ export default function SectionCards() {
               title="Smart Project Insights"
               description="Leverage AI driven insights to optimize project workflows , improve task allocation and enhance team collaboration."
             >
-              <div className="sm:space-y-2 space-y-4 relative z-10 tracking-wider bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 shadow-2xl">
+              <div className="sm:space-y-2 space-y-4 relative z-10 tracking-wider bg-linear-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 shadow-2xl">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5"/>
                   <h3 className="font-bold font-JBM text-white text-lg mb-0">Content</h3>
