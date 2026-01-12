@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { LoginForm } from "@/components/login-form"
+=======
+import { SignUpForm } from "@/components/signup-form"
+>>>>>>> c0e15984715ffe1141f92405e6b2e0f266f748ad
 
 export default function SignUpPage() {
   return (
@@ -6,7 +10,11 @@ export default function SignUpPage() {
       <div className="pointer-events-none absolute inset-0 z-10">
       </div>
       <div className="flex w-full max-w-sm flex-col gap-6 z-10">
+<<<<<<< HEAD
         <LoginForm/>
+=======
+        <SignUpForm/>
+>>>>>>> c0e15984715ffe1141f92405e6b2e0f266f748ad
       </div>
     </div>
   )
