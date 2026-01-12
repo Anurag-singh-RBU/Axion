@@ -1,25 +1,42 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldSeparator,
-} from "@/components/ui/field"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Form, FormControl, FormDescription, FormField, FormLabel, FormItem, FormMessage } from "@/components/ui/form"
 
-export function LoginForm({
-  className,
-  ...props
-}) {
+
+const loginFormSchema = z.object({
+  email: z.string().min(1, "Email is required").email("Invalid email address format").max(320, "Email is too long"),
+  password: z.string().min(8 , "Password must be at least 8 characters").max(128 , "Password must be no more than 128 characters")
+    .refine((val) => !/\s/.test(val), {
+      message: "Password cannot contain spaces"
+    }).refine(
+      (val) =>
+        /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(val),
+      {
+        message: "Password must contain upper and lower case letters , a number and a special character",
+      }
+    ),
+});
+
+export function LoginForm({className , ...props}){
+
+  const methods = useForm({
+
+    resolver: zodResolver(loginFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+
+  })
+  
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -30,7 +47,11 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+        <Form {...methods}>
+          <form 
+            onSubmit={methods.handleSubmit((values) => {
+              console.log("Form submitted with values:", values);
+            })}>
             <FieldGroup>
               <Field>
                 <Button variant="outline" type="button" className="font-HG tracking-wide">
@@ -53,19 +74,33 @@ export function LoginForm({
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card font-HG tracking-wider">
                 Or continue with
               </FieldSeparator>
-              <Field>
-                <FieldLabel htmlFor="email" className="font-GS tracking-wider ml-1">Email</FieldLabel>
-                <Input id="email" type="email" placeholder="Enter your email" required className="placeholder:font-HG!" />
-              </Field>
-              <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password" className="font-GS tracking-wider ml-1">Password</FieldLabel>
-                  <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline font-HG">
-                    Forgot your password ?
-                  </a>
-                </div>
-                <Input id="password" type="password" required placeholder="Enter your password" />
-              </Field>
+              <FormField control={methods.control} name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-GS tracking-wider ml-2">Email</FormLabel>
+                    <FormControl>
+                      <Input id="email" type="email" placeholder="Enter your email" {...field}/>
+                    </FormControl>
+                    <FormMessage/>
+                  </FormItem>
+                )}/>
+              <FormField control={methods.control} name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex justify-between items-end">
+                      <FormLabel className="font-GS tracking-wider ml-2">Password</FormLabel>
+                      <a
+                        href="/forgot-password"
+                        className="text-sm underline-offset-4 hover:underline font-HG">
+                        Forgot your password ?
+                      </a>
+                    </div>
+                    <FormControl>
+                      <Input id="password" type="password" placeholder="Enter your password" {...field}/>
+                    </FormControl>
+                    <FormMessage/>
+                  </FormItem>
+                )}/>
               <Field>
                 <Button type="submit" className="font-HG tracking-wider">Login</Button>
                 <FieldDescription className="text-center font-HG">
@@ -74,6 +109,7 @@ export function LoginForm({
               </Field>
             </FieldGroup>
           </form>
+        </Form>
         </CardContent>
       </Card>
       <FieldDescription className="px-6 text-center font-HG leading-6">
