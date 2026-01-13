@@ -10,7 +10,6 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormDescription, FormField, FormLabel, FormItem, FormMessage } from "@/components/ui/form"
 
-
 const loginFormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email address format").max(320, "Email is too long"),
   password: z.string().min(8 , "Password must be at least 8 characters").max(128 , "Password must be no more than 128 characters")
@@ -50,7 +49,7 @@ export function LoginForm({className , ...props}){
         <Form {...methods}>
           <form 
             onSubmit={methods.handleSubmit((values) => {
-              console.log("Form submitted with values:", values);
+              console.log("Form submitted with values :", values);
             })}>
             <FieldGroup>
               <Field>
