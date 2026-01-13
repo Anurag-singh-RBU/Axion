@@ -6,23 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Form, FormControl, FormDescription, FormField, FormLabel, FormItem, FormMessage } from "@/components/ui/form"
-
-const loginFormSchema = z.object({
-  email: z.string().min(1, "Email is required").email("Invalid email address format").max(320, "Email is too long"),
-  password: z.string().min(8 , "Password must be at least 8 characters").max(128 , "Password must be no more than 128 characters")
-    .refine((val) => !/\s/.test(val), {
-      message: "Password cannot contain spaces"
-    }).refine(
-      (val) =>
-        /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(val),
-      {
-        message: "Password must contain upper and lower case letters , a number and a special character",
-      }
-    ),
-});
+import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from "@/components/ui/form"
+import { loginFormSchema } from "../app/(auth)/schema"
 
 export function LoginForm({className , ...props}){
 

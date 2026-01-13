@@ -1,6 +1,7 @@
 import { Geist , JetBrains_Mono , Figtree , Inter , Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import "./fonts.css"
+import Providers from "./providers"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,16 +30,17 @@ const hankenGrotesk = Hanken_Grotesk({
 });
 
 export const metadata = {
-  title: "Jira Clone",
+  title: "Axion",
   description: "Your Excuse To Look Busy",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${inter.variable} ${jetBrainsMono.variable} ${figtree.variable} ${hankenGrotesk.variable} antialiased`} suppressHydrationWarning>
-        {children}
+      <body className={`${geistSans.variable} ${inter.variable} ${jetBrainsMono.variable} ${figtree.variable} ${hankenGrotesk.variable} antialiased`} suppressHydrationWarning>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

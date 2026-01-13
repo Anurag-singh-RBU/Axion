@@ -28,6 +28,6 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/(auth)/server/route.js"  ],
   "exclude": ["node_modules"]
 }
