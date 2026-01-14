@@ -9,8 +9,11 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from "@/components/ui/form"
 import { loginFormSchema } from "../app/(auth)/schema"
+import { useLogin } from "../app/(auth)/api/use-login3"
 
 export function LoginForm({className , ...props}){
+
+  const { mutate } = useLogin();
 
   const methods = useForm({
 
@@ -33,9 +36,11 @@ export function LoginForm({className , ...props}){
         </CardHeader>
         <CardContent>
         <Form {...methods}>
-          <form 
+          <form           
             onSubmit={methods.handleSubmit((values) => {
-              console.log("Form submitted with values :", values);
+              
+              mutate(values);
+              
             })}>
             <FieldGroup>
               <Field>
