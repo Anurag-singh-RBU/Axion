@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from "@/components/ui/form"
 import { loginFormSchema } from "../app/(auth)/schema"
-import { useLogin } from "../app/(auth)/api/use-login3"
+import { useLogin } from "../hooks/use-login"
 
 export function LoginForm({className , ...props}){
 
