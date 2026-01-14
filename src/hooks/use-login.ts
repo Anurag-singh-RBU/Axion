@@ -1,16 +1,28 @@
 import { useMutation } from "@tanstack/react-query";
-import { InferRequestType, InferResponseType,} from "hono/client";
 import { client } from "@/lib/rpc";
+import type { z } from "zod";
+import type { loginFormSchema } from "@/app/(auth)/schema";
 
-type ResponseType = InferResponseType<typeof client.api.auth["sign-in"]["$post"]>;
+// Type assertion to help TypeScript recognize the api property structure
+const typedClient = client as typeof client & {
+  api: {
+    auth: {
+      "sign-in": {
+        $post: (options: { json: z.infer<typeof loginFormSchema> }) => Promise<Response>;
+      };
+    };
+  };
+};
 
-type RequestType = InferRequestType<typeof client.api.auth["sign-in"]["$post"]>;
+// Manually define types based on the route structure
+type RequestType = z.infer<typeof loginFormSchema>;
+type ResponseType = { success: string };
 
 export const useLogin = () => {
 
   return useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
-      const res = await client.api.auth["sign-in"]["$post"]({json});
+      const res = await typedClient.api.auth["sign-in"]["$post"]({json});
 
       if (!res.ok) {
 
