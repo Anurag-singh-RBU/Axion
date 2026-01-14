@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
-import ElectricBorder from '@/(Plasma)/ElectricBorder';
+import ElectricBorder from '@/Plasma/ElectricBorder'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -13,7 +14,7 @@ export default function Header() {
   const [active, setActive] = useState('Home');
   const [animating, setAnimating] = useState(false);
 
-  const items = ['Home', 'Docs', 'Showcase', 'Tools'];
+  const items = ['Home', 'Docs', 'Dashboard', 'Kanban'];
 
   const handleClick = (item) => {
     setActive(item);
@@ -31,38 +32,29 @@ export default function Header() {
     <header className="sticky top-0 py-3 z-50 bg-transparent font-FT">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <div className="flex gap-3 justify-center items-center">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="3" width="26" height="26" rx="7" fill="#5227FF"/>
-            <rect x="9.5" y="9.5" width="13" height="13" rx="3.5" fill="#13004D"/>
-            <circle cx="16" cy="16" r="3.5" fill="#B19EEF"/>
-        </svg>
-        <Link href="/" className="text-white font-bold font-JBM text-xl">
-          AXION
-        </Link>
+          <div className="bg-white rounded-full mb-2">
+            <img src="/logo.png" alt="Axion Logo" className="h-8 w-8 object-cover rounded-md"/>
+          </div>
+          <Link href="/" className="text-white font-bold font-JBM text-xl">
+            AXION
+          </Link>
         </div>
 
         <nav className="hidden md:flex items-center gap-3">
 
-        <div className="bg-neutral-950 rounded-[40px] px-6 py-3 inline-flex justify-center items-center gap-8 text-sm select-none cursor-pointer relative overflow-visible"
+        <div className="bg-neutral-950 rounded-[40px] font-FT tracking-wider px-6 py-3 inline-flex justify-center items-center gap-8 text-sm select-none cursor-pointer relative overflow-visible"
           style={{boxShadow: '0 1.5px 8px 0 #B19EEF33, 0 0px 0px 1.5px #B19EEF15'}}>
           <span className="pointer-events-none absolute inset-0 z-0 rounded-[40px] bg-linear-to-tr from-[#b19eef22] via-[#5227ff22] to-transparent blur-xl opacity-50 animate-pulse" />
         {items.map(item => (
         <div
           key={item}
           onClick={() => handleClick(item)}
-          className={`relative pb-1 transition-colors duration-300 ${active === item ? 'text-white' : 'text-[#B19EEF]'}`}>
+          className={`relative pb-1 transition-colors duration-300 ${active === item ? 'text-white' : 'text-gray-300'}`}>
           {item}
           {active === item && (
             <span
               className="absolute bottom-0 left-1/2 bg-white rounded-full top-[20px]"
-              style={{
-                width: animating ? '24px' : '6px',
-                height: '6px',
-                transform: 'translateX(-50%)',
-                transition: 'width 0.3s ease'
-              }}
-            />
+              style={{ width: animating ? '24px' : '6px', height: '6px', transform: 'translateX(-50%)', transition: 'width 0.3s ease' }}/>
           )}
         </div>
       ))}

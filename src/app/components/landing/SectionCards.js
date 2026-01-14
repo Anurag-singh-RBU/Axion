@@ -15,17 +15,17 @@ const SectionCard = ({ title, description, children }) => (
 const ButtonGroup = () => (
   <div className="flex flex-wrap gap-3">
     <button className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors w-full sm:w-auto">
-      <Paperclip className="w-4 h-4 text-gray-400" />
+      <Paperclip className="w-4 h-4 text-gray-400"/>
       <span className="text-gray-300 text-sm">Attach</span>
     </button>
 
     <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors w-full sm:w-auto">
-      <Search className="w-4 h-4 text-gray-400" />
+      <Search className="w-4 h-4 text-gray-400"/>
       <span className="text-gray-300 text-sm">Search</span>
     </button>
 
     <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors w-full sm:w-auto">
-      <Lightbulb className="w-4 h-4 text-gray-400" />
+      <Lightbulb className="w-4 h-4 text-gray-400"/>
       <span className="text-gray-300 text-sm">Reason</span>
     </button>
   </div>
@@ -33,8 +33,15 @@ const ButtonGroup = () => (
 
 export default function SectionCards() {
   return (
+<<<<<<< HEAD
     <div className="min-h-screen text-white p-6 sm:p-8 md:p-16 pt-13 relative sm:mt-30 mt-10">
       <div className="absolute top-10 left-8 right-8 h-px bg-white/9"></div>
+=======
+    <div className="h-auto text-white px-6 sm:p-8 md:p-16 pt-13 relative sm:mt-30 mt-10 sm:mb-0">
+      
+      {/* Top Horizontal Line */}
+       <div className="absolute top-10 left-8 right-8 h-[1px] bg-white/9"></div> 
+>>>>>>> c9e26b6a50d8f7b89cb49bdbe8fc7a5f79c1b57f
 
       <div className="max-w-7xl mx-auto relative">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 relative z-10">
@@ -75,9 +82,12 @@ export default function SectionCards() {
           <div className="sm:space-y-4">
             <SectionCard
               title="Automation Tools"
-              description="Integrate and automate project tools for seamless task flow and real time tracking."
-            >
+              description="Integrate and automate project tools for seamless task flow and real time tracking.">
               <div className="relative">
+<<<<<<< HEAD
+=======
+                {/* Code Block */}
+>>>>>>> c9e26b6a50d8f7b89cb49bdbe8fc7a5f79c1b57f
                 <div className="relative z-10 bg-linear-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 shadow-2xl">
                   <div className="font-mono text-sm text-gray-300 space-y-1">
                     <div className="text-gray-200 font-JBM tracking-wider">
@@ -110,9 +120,8 @@ export default function SectionCards() {
                     <input
                       type="text"
                       placeholder="Ask about project deadlines or task priorities."
-                      className="w-full bg-transparent border-none outline-none font-HG tracking-wider text-white placeholder-gray-500 text-md mb-6"
-                    />
-                    <ButtonGroup />
+                      className="w-full bg-transparent border-none outline-none font-HG tracking-wider text-white placeholder-gray-500 text-md mb-6"/>
+                    <ButtonGroup/>
                   </div>
                 </div>
               </div>
