@@ -3,7 +3,6 @@ import { client } from "@/lib/rpc";
 import type { z } from "zod";
 import type { loginFormSchema } from "@/app/(auth)/schema";
 
-// Type assertion to help TypeScript recognize the api property structure
 const typedClient = client as typeof client & {
   api: {
     auth: {
@@ -14,7 +13,6 @@ const typedClient = client as typeof client & {
   };
 };
 
-// Manually define types based on the route structure
 type RequestType = z.infer<typeof loginFormSchema>;
 type ResponseType = { success: string };
 
@@ -24,7 +22,7 @@ export const useLogin = () => {
     mutationFn: async (json) => {
       const res = await typedClient.api.auth["sign-in"]["$post"]({json});
 
-      if (!res.ok) {
+      if(!res.ok){
 
         throw new Error("Login failed");
         
