@@ -6,7 +6,7 @@ import type { signupFormSchema } from "@/app/(auth)/schema";
 const typedClient = client as typeof client & {
   api: {
     auth: {
-      "sign-in": {
+      "sign-up": {
         $post: (options: { json: z.infer<typeof signupFormSchema> }) => Promise<Response>;
       };
     };
@@ -24,7 +24,7 @@ export const useSignUp = () => {
 
         if(!res.ok){
 
-            throw new Error("Login failed");
+          throw new Error("Signup failed");
             
         }
 
