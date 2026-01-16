@@ -8,9 +8,9 @@ export const loginFormSchema = z.object({
   message: "Password cannot contain spaces"
   }).refine(
   (val) =>
-      /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(val),
+    /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(val),
   {
-      message: "Password must contain upper and lower case letters , a number and a special character",
+    message: "Password must contain upper and lower case letters , a number and a special character",
   }
   ),
     

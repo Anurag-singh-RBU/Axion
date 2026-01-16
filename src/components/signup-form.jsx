@@ -73,7 +73,7 @@ export function SignUpForm({className , ...props}){
                       <FormControl>
                       <Input id="username" type="text" placeholder="Enter your username" {...field}/>
                       </FormControl>
-                      <FormMessage/>
+                      <FormMessage className="ml-2"/>
                     </FormItem>
                     )}/>
                 <FormField control={methods.control} name="email"
@@ -83,7 +83,7 @@ export function SignUpForm({className , ...props}){
                       <FormControl>
                       <Input id="email" type="email" placeholder="Enter your email" {...field}/>
                       </FormControl>
-                      <FormMessage/>
+                      <FormMessage className="ml-2"/>
                     </FormItem>
                     )}/>
                   <FormField control={methods.control} name="password"
@@ -95,7 +95,7 @@ export function SignUpForm({className , ...props}){
                       <FormControl>
                       <Input id="password" type="password" placeholder="Enter your password" {...field}/>
                       </FormControl>
-                      <FormMessage/>
+                      <FormMessage className="ml-2"/>
                     </FormItem>
                     )}/>
                   <Field>

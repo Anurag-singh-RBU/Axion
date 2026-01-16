@@ -3,6 +3,8 @@ import { zValidator } from '@hono/zod-validator'
 import { loginFormSchema, signupFormSchema } from '@/app/(auth)/schema'
 import { createAdminClient } from '@/lib/appwrite';
 import { ID } from 'node-appwrite';
+import { setCookie } from 'hono/cookie'
+import { AUTH_COOKIE } from '@/app/(auth)/constants'
 
 const app = new Hono()
 .post("/sign-in" , zValidator("json" , loginFormSchema) , async (c) => {
@@ -14,14 +16,31 @@ const app = new Hono()
 })
 .post("/sign-up" , zValidator("json" , signupFormSchema) , async (c) => {
 
-    const { username , email , password } = c.req.valid("json");
+    try {
 
-    const { account } = await createAdminClient();
-    const user = await account.create(ID.unique() , username , email , password);
+        const { username , email , password } = c.req.valid("json");
 
-    const session = await account.createEmailPasswordSession({ email , password });
+        const { account } = await createAdminClient();
 
-    return c.json({ username , email , password });
+        const user = await account.create(ID.unique(), email, password, username);
+        const session = await account.createEmailPasswordSession(email, password);
+
+        setCookie(c , AUTH_COOKIE , session.secret, {
+            path: "/",
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            maxAge: 60 * 60 * 24 * 30,
+        });
+
+        return c.json({ user , session });
+
+    } catch(err : any){
+
+        console.log("SIGNUP ERROR :", err);
+        return c.json({ message : err?.message || "Internal Server Error" } , 500);
+
+    }
 
 })
 

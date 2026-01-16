@@ -71,7 +71,7 @@ export function LoginForm({className , ...props}){
                     <FormControl>
                       <Input id="email" type="email" placeholder="Enter your email" {...field}/>
                     </FormControl>
-                    <FormMessage/>
+                    <FormMessage className="ml-2"/>
                   </FormItem>
                 )}/>
               <FormField control={methods.control} name="password"
@@ -88,7 +88,7 @@ export function LoginForm({className , ...props}){
                     <FormControl>
                       <Input id="password" type="password" placeholder="Enter your password" {...field}/>
                     </FormControl>
-                    <FormMessage/>
+                    <FormMessage className="ml-2"/>
                   </FormItem>
                 )}/>
               <Field>
