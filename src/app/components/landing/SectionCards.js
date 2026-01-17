@@ -1,4 +1,5 @@
 import { Lightbulb, Paperclip, Search, Sparkles } from 'lucide-react';
+import Triage from "./Triage"
 
 const SectionCard = ({ title, description, children }) => (
   <div className="w-full sm:p-6 px-3 rounded-lg shadow-md">
@@ -43,7 +44,7 @@ export default function SectionCards() {
               title="Smart Project Insights"
               description="Leverage AI driven insights to optimize project workflows , improve task allocation and enhance team collaboration."
             >
-              <div className="sm:space-y-2 space-y-4 relative z-10 tracking-wider bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 shadow-2xl">
+              <div className="sm:space-y-2 space-y-4 sm:hidden block relative z-10 tracking-wider bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 shadow-2xl">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5"/>
                   <h3 className="font-bold font-JBM text-white text-lg mb-0">Content</h3>
@@ -60,6 +61,9 @@ export default function SectionCards() {
                 <div className="flex items-start gap-3 sm:text-sm text-xs">
                     <span className="text-gray-400">Track dependencies across multiple tasks and projects.</span>
                 </div>
+              </div>
+              <div className="sm:block hidden relative z-10 tracking-wider bg-linear-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-gray-700 rounded-2xl p-6 shadow-2xl">
+                <Triage></Triage>
               </div>
             </SectionCard>
           </div>
