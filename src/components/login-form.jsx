@@ -36,11 +36,17 @@ export function LoginForm({className , ...props}){
         </CardHeader>
         <CardContent>
         <Form {...methods}>
-          <form           
+          <form
             onSubmit={methods.handleSubmit((values) => {
-              
-              mutate(values);
-              
+              mutate(values , {
+
+                onSuccess : () => {
+
+                  window.location.href = "/";
+                  
+                },
+
+              });
             })}>
             <FieldGroup>
               <Field>
