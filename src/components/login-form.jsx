@@ -98,7 +98,15 @@ export function LoginForm({className , ...props}){
                   </FormItem>
                 )}/>
               <Field>
-                <Button type="submit" className="font-HG tracking-wider">Login</Button>
+                <Button type="submit" className="font-HG tracking-wider active:scale-98 transition-transform duration-100" disabled={methods.formState.isSubmitting}>
+                  {methods.formState.isSubmitting && (
+                    <svg className="animate-spin mr-2 h-4 w-4 inline" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                    </svg>
+                  )}
+                  Login
+                </Button>
                 <FieldDescription className="text-center font-HG">
                   Do not have an account ? <a href="/sign-up">Sign up</a>
                 </FieldDescription>

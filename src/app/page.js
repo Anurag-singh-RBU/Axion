@@ -5,9 +5,12 @@ import { useCurrent } from "@/hooks/use-current";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import CubeLoader from "../components/cube-loader";
+import { useLogout } from "../hooks/use-logout";
+import { UserBtn } from "../components/userBtn";
 
 export default function Home() {
 
+  const { mutate } = useLogout();
   const { data , isLoading } = useCurrent();
   const router = useRouter();
 
@@ -31,7 +34,13 @@ export default function Home() {
           <CubeLoader></CubeLoader>
         </div>
       ) : (
-        <Landing/>
+      // <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", padding: "1rem" }}>
+      //   <button onClick={() => mutate()} className="bg-zinc-900 text-white px-5 py-2 rounded-lg border-none cursor-pointer text-base">
+      //     Logout
+      //   </button>
+      //   <Landing/>
+      // </div>
+      <UserBtn></UserBtn>
       )}
 
     </section>

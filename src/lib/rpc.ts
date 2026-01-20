@@ -1,4 +1,9 @@
-import { hc } from "hono/client"
-import { AppType } from "../app/api/[[...route]]/route"
+import { hc } from "hono/client";
+import type { AppType } from "../app/api/[[...route]]/route";
 
-export const client = hc<AppType>(process.env.NEXT_PUBLIC_APP_URL as string);
+export const client = hc<AppType>(process.env.NEXT_PUBLIC_APP_URL as string , {
+  fetch: (input , init) =>
+    fetch(input , {
+      ...init , credentials: "include",
+    }),
+});
