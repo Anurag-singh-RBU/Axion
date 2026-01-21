@@ -26,7 +26,7 @@ export const UserBtn = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="p-2 h-10 w-10 rounded-full bg-blue-400">
+                <Button variant="ghost" className="p-2 h-10 w-10 rounded-full bg-muted">
                     {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
                 </Button>
             </DropdownMenuTrigger>
