@@ -26,13 +26,8 @@ export const UserBtn = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="p-2 h-10 w-10 rounded-md">
-                    <Avatar>
-                        <AvatarImage src={user?.avatarUrl || ""} alt={user?.name || "User"}/>
-                        <AvatarFallback>
-                            {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
-                        </AvatarFallback>
-                    </Avatar>
+                <Button variant="ghost" className="p-2 h-10 w-10 rounded-full bg-blue-400">
+                    {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-auto" align="end">
