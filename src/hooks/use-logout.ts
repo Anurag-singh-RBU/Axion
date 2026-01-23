@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "../lib/rpc";
+import { useRouter } from "next/navigation";
 
 const typedClient = client as typeof client & {
   api: {
@@ -15,26 +16,29 @@ type ResponseType = { success: string };
 
 export const useLogout = () => {
 
-    const queryClient = useQueryClient();
+  const router = useRouter();
 
-    return useMutation<ResponseType, Error>({
-        mutationFn: async () => {
-        const res = await typedClient.api.auth["logout"]["$post"]();
+  const queryClient = useQueryClient();
 
-        if(!res.ok){
+  return useMutation<ResponseType, Error>({
+    mutationFn: async () => {
+    const res = await typedClient.api.auth["logout"]["$post"]();
 
-            throw new Error("Logout failed");
-            
-        }
+    if(!res.ok){
 
-        return await res.json();
+        throw new Error("Logout failed");
+        
+    }
 
-        },
+    return await res.json();
 
-        onSuccess: () => {
+    },
 
-            queryClient.invalidateQueries({ queryKey: ["current"]});
-            
-        }
-    });
+    onSuccess: () => {
+
+      router.refresh();
+      queryClient.invalidateQueries({ queryKey: ["current"] });
+        
+    }
+  });
 };

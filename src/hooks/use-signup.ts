@@ -2,6 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import { client } from "@/lib/rpc";
 import type { z } from "zod";
 import type { signupFormSchema } from "@/app/(auth)/schema";
+import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const typedClient = client as typeof client & {
   api: {
@@ -18,18 +20,26 @@ type ResponseType = { success: string };
 
 export const useSignUp = () => {
 
-    return useMutation<ResponseType, Error, RequestType>({
-        mutationFn: async (json) => {
-        const res = await typedClient.api.auth["sign-up"]["$post"]({json});
+  const router = useRouter();
+  const queryClient = useQueryClient();
 
-        if(!res.ok){
+  return useMutation<ResponseType, Error, RequestType>({
+    mutationFn: async (json) => {
+    const res = await typedClient.api.auth["sign-up"]["$post"]({json});
 
-          throw new Error("Signup failed");
-            
-        }
+    if(!res.ok){
 
-        return await res.json();
+      throw new Error("Signup failed");
+        
+    }
 
-        },
-    });
+    return await res.json();
+
+    },
+
+    onSuccess: () => {
+      router.refresh();
+      queryClient.invalidateQueries({ queryKey: ["current"] });
+    }
+  });
 };

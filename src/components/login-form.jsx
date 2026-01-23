@@ -42,7 +42,7 @@ export function LoginForm({className , ...props}){
 
                 onSuccess : () => {
 
-                  window.location.href = "/";
+                  window.location.href = "/dashboard";
                   
                 },
 

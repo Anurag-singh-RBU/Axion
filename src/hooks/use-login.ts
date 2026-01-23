@@ -2,6 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import { client } from "@/lib/rpc";
 import type { z } from "zod";
 import type { loginFormSchema } from "@/app/(auth)/schema";
+import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const typedClient = client as typeof client & {
   api: {
@@ -18,6 +20,9 @@ type ResponseType = { success: string };
 
 export const useLogin = () => {
 
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
   return useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
       const res = await typedClient.api.auth["sign-in"]["$post"]({json});
@@ -31,5 +36,12 @@ export const useLogin = () => {
       return await res.json();
 
     },
+
+    onSuccess: () => {
+
+      router.refresh();
+      queryClient.invalidateQueries({ queryKey: ["current"] });
+
+    }
   });
 };
