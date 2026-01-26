@@ -26,7 +26,7 @@ const Header = () => {
     return (
         <header className="sticky z-40 top-0 w-full border-b border-gray-200 bg-white">
         <div className="flex sm:h-12 h-13 items-center justify-between px-2 sm:px-4 gap-2 sm:gap-4">
-            <div className="flex items-center min-w-0">
+            <div className="flex items-center min-w-0 sm:ml-0 -ml-2">
             <Button
                 variant="ghost"
                 size="icon"
@@ -42,7 +42,7 @@ const Header = () => {
             <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8 rounded hover:bg-gray-100">
+                className="h-8 w-8 rounded hover:bg-gray-100 sm:ml-0 -ml-2">
                 <LayoutGridIcon className="h-4 w-4 text-gray-600"/>
             </Button>
 
