@@ -42,7 +42,9 @@ const DashboardPage = () => {
                     <CubeLoader/>
                 </div>
             ) : (
-                <UserBtn/>
+                <div>
+
+                </div>
             )}
         </section>
     );
