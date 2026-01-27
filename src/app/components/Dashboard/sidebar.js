@@ -22,16 +22,13 @@ const SidebarContent = () => {
         <div className="bg-white rounded-full">
           <img src="/logo.png" alt="Axion Logo" className="h-7 w-7 object-cover rounded-md"/>
         </div>
-        {/* Only show the AXION text when not collapsed */}
         {!isCollapsed && (
           <Link href="/" className="text-black font-bold font-JBM text-xl">
             AXION
           </Link>
         )}
       </div>
-      {/* Always show the separator */}
       <DottedSeparator color="gray"/>
-      {/* Hide nav when collapsed */}
       {!isCollapsed && (
         <>
           <nav className="flex flex-col gap-1 px-2 mt-5 text-[15px] font-HG">

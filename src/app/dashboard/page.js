@@ -5,6 +5,7 @@ import { getCurrent } from "@/app/(auth)/actions";
 import { redirect } from "next/navigation";
 import CubeLoader from "../../components/cube-loader";
 import { UserBtn } from "../../components/userBtn";
+import WorkspaceCreatePage from "../Features/workspaces/components/workspaceForm";
 
 const DashboardPage = () => {
 
@@ -43,7 +44,7 @@ const DashboardPage = () => {
                 </div>
             ) : (
                 <div>
-
+                    <WorkspaceCreatePage></WorkspaceCreatePage>
                 </div>
             )}
         </section>
