@@ -219,9 +219,6 @@ export default function WorkspaceCreatePage({className , ...props}) {
             Each workspace has its own members and content
             <span className="text-black font-medium"> - Manage your projects and tasks with ease.</span>
             <br/><br/>
-            <span className="block text-blue-900 font-bold text-xs my-2">
-                Teamwork makes the dream work (and the memes work)!
-            </span>
             <span
                 className="font-semibold tracking-wider mr-1 -ml-1 px-2 rounded inline-flex items-center gap-1"
                 style={{
@@ -231,7 +228,7 @@ export default function WorkspaceCreatePage({className , ...props}) {
                 }}>
                 Note :
             </span>
-            Set a clear <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">name</span> , <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">code</span> and <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">description</span> to make your workspace instantly recognizable for everyone.Teamwork makes the dream work.
+            Set a clear <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">name</span> , <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">code</span> and <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">description</span> to make your workspace instantly recognizable for everyone. Teamwork makes the dream work.
         </p>
         </div>
     </div>
