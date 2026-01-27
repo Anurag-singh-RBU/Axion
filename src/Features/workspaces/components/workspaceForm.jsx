@@ -38,7 +38,7 @@ export default function WorkspaceCreatePage({className , ...props}) {
     })
     return (
 
-        <div className="w-full sm:px-8 px-3 py-6 min-h-screen">
+        <div className="w-full sm:px-8 px-3 pt-6">
 
             <div className="mb-7 animate-fade-in">
                 <div className="relative inline-block">

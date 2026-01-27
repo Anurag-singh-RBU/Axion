@@ -13,7 +13,7 @@ function DashboardContent({ children }) {
             <ClickSpark sparkColor='rgb(59,130,246)' sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
             <div className="flex w-full h-full">
                 {/* Desktop Sidebar - Fixed */}
-                <div className={`fixed left-0 top-0 hidden lg:block h-full overflow-y-auto transition-all duration-300 z-40 ${
+                <div className={`fixed left-0 top-0 hidden lg:block h-full overflow-y-hidden transition-all duration-300 z-40 ${
                     isCollapsed ? 'w-16' : 'w-[264px]'
                 }`}>
                     <Sidebar/>
