@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
 import auth from '../../../server/route'
-import * as workspaces from "../../Features/workspaces/server/route"
+import workspaces from '../../../Features/workspaces/server/route'
 
 const app = new Hono().basePath('/api')
 
@@ -9,7 +9,7 @@ const app = new Hono().basePath('/api')
 
 const routes = app
     .route("/auth", auth as Hono)
-    .route("/workspaces", workspaces as unknown as Hono);
+    .route("/workspaces", workspaces as Hono);
 
 export const GET = handle(app);
 export const POST = handle(app);

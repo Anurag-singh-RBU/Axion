@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { getCurrent } from "@/app/(auth)/actions";
 import { redirect } from "next/navigation";
 import CubeLoader from "../../components/cube-loader";
-import { UserBtn } from "../../components/userBtn";
-import WorkspaceCreatePage from "../Features/workspaces/components/workspaceForm";
+import WorkspaceCreatePage from "../../Features/workspaces/components/workspaceForm";
 
 const DashboardPage = () => {
 

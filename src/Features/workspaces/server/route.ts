@@ -4,7 +4,6 @@ import { workspaceSchema } from '../schema';
 import { sessionMiddleware } from '@/lib/sessionMiddleware';
 import { DATABASE_ID, WORKSPACES_ID } from '@/config';
 import { ID } from 'node-appwrite';
-import { handle } from "hono/vercel";
 
 const app = new Hono()
 .post("/" , zValidator("json" , workspaceSchema) , sessionMiddleware , async (c) => {
@@ -19,4 +18,4 @@ const app = new Hono()
 
 })
 
-export const POST = handle(app);
+export default app;
