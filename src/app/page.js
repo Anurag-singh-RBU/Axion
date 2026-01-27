@@ -1,6 +1,4 @@
 import Landing from "./components/landing/Landing";
-import WorkspaceCreatePage from "./Features/workspaces/components/workspaceForm";
-
 
 export default function Home() {
 
@@ -8,7 +6,7 @@ export default function Home() {
     <section>
 
       <div>
-        <WorkspaceCreatePage></WorkspaceCreatePage>
+        <Landing></Landing>
       </div>
 
     </section>
