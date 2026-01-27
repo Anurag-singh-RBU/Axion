@@ -108,7 +108,7 @@ export default function WorkspaceCreatePage({className , ...props}) {
                                   <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-2">
                                     Description
                                   </FormLabel>
-                                  <span className="ml-2 px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-600 font-medium">
+                                  <span className="ml-2 sm:mt-0 -mt-2 px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-600 font-medium">
                                     optional
                                   </span>
                                 </div>
