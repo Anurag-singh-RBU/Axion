@@ -8,9 +8,7 @@ import { Input } from "@/components/ui/input";
 
 import {
   Field,
-  FieldDescription,
   FieldGroup,
-  FieldSeparator,
 } from "@/components/ui/field";
 import {
   Form,
@@ -20,21 +18,21 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-
-import { loginFormSchema } from "@/app/(auth)/schema";
-import { useLogin } from "@/hooks/use-login";
-import { DottedSeparator } from "../../../../components/Dotted-Seperator";
+import { workspaceSchema } from "../schema";
+import { useWorkspace } from "../api/use-workspace";
+import { DottedSeparator } from "../../../components/Dotted-Seperator";
 
 export default function WorkspaceCreatePage({className , ...props}) {
 
-    const { mutate } = useLogin();
+    const { mutate } = useWorkspace();
 
     const methods = useForm({
 
-        resolver: zodResolver(loginFormSchema),
+        resolver: zodResolver(workspaceSchema),
         defaultValues: {
-            email: "",
-            password: "",
+            name: "",
+            key: "",
+            description: "",
         },
 
     })
