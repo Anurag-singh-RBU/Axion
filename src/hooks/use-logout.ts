@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "../lib/rpc";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const typedClient = client as typeof client & {
   api: {
@@ -26,7 +27,7 @@ export const useLogout = () => {
 
     if(!res.ok){
 
-        throw new Error("Logout failed");
+      throw new Error("Logout failed");
         
     }
 
@@ -36,9 +37,16 @@ export const useLogout = () => {
 
     onSuccess: () => {
 
+      toast.success("Successfully Logged Out !!");
       router.refresh();
       queryClient.invalidateQueries({ queryKey: ["current"] });
         
+    },
+
+    onError: () => {
+
+      toast.error("Failed to logout !!");
+      
     }
   });
 };

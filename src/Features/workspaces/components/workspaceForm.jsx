@@ -36,6 +36,14 @@ export default function WorkspaceCreatePage({className , ...props}) {
         },
 
     })
+
+    const onSubmit = (values) => {
+
+        console.log(values);
+        mutate(values);
+
+    }
+
     return (
 
         <div className="w-full sm:px-8 px-3 pt-6">
@@ -68,17 +76,7 @@ export default function WorkspaceCreatePage({className , ...props}) {
                 <CardContent>
                 <Form {...methods}>
                 <form
-                    onSubmit={methods.handleSubmit((values) => {
-                    mutate(values , {
-
-                        onSuccess : () => {
-
-                        window.location.href = "/dashboard";
-                        
-                        },
-
-                    });
-                })}>
+                    onSubmit={methods.handleSubmit(onSubmit)}>
                 <FieldGroup>
                 <DottedSeparator color="gray" className="-mt-1"/>
                     <FormField control={methods.control} name="name"
@@ -91,16 +89,26 @@ export default function WorkspaceCreatePage({className , ...props}) {
                                 <FormMessage className="ml-2"/>
                             </FormItem>
                         )}/>
-                        <FormField control={methods.control} name="url"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-2">Key</FormLabel>
+                        <FormField
+                            control={methods.control}
+                            name="key"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-2">
+                                    Key
+                                </FormLabel>
                                 <FormControl>
-                                <Input id="key" type="text" placeholder="Enter your workspace code" {...field}/>
+                                    <Input
+                                    id="key"
+                                    type="text"
+                                    placeholder="Enter your workspace code"
+                                    {...field}
+                                    />
                                 </FormControl>
-                                <FormMessage className="ml-2"/>
-                            </FormItem>
-                        )}/>
+                                <FormMessage className="ml-2" />
+                                </FormItem>
+                            )}
+                        />
                         <FormField control={methods.control} name="description"
                             render={({ field }) => (
                             <FormItem>
@@ -228,7 +236,7 @@ export default function WorkspaceCreatePage({className , ...props}) {
                 }}>
                 Note :
             </span>
-            Set a clear <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">name</span> , <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">code</span> and <span className="text-blue-800 font-semibold underline decoration-wavy decoration-red-500">description</span> to make your workspace instantly recognizable for everyone. Teamwork makes the dream work.
+            Set a clear <span className="text-blue-800 font-semibold">name</span> , <span className="text-blue-800 font-semibold">code</span> and <span className="text-blue-800 font-semibold">description</span> to make your workspace instantly recognizable for everyone. Teamwork makes the dream work.
         </p>
         </div>
     </div>

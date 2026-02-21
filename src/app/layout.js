@@ -2,6 +2,7 @@ import { Geist , JetBrains_Mono , Figtree , Inter , Hanken_Grotesk } from "next/
 import "./globals.css";
 import "./fonts.css"
 import Providers from "./providers"
+import { Toaster } from "@/components/ui/sonner"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${inter.variable} ${jetBrainsMono.variable} ${figtree.variable} ${hankenGrotesk.variable} antialiased`} suppressHydrationWarning>
         <Providers>
+          <Toaster></Toaster>
           {children}
         </Providers>
       </body>

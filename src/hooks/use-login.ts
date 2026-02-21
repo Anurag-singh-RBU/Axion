@@ -4,6 +4,7 @@ import type { z } from "zod";
 import type { loginFormSchema } from "@/app/(auth)/schema";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const typedClient = client as typeof client & {
   api: {
@@ -39,9 +40,16 @@ export const useLogin = () => {
 
     onSuccess: () => {
 
+      toast.success("Successfully Logged In !!");
       router.refresh();
       queryClient.invalidateQueries({ queryKey: ["current"] });
 
+    },
+
+    onError: () => {
+
+      toast.error("Failed to Login !!");
+      
     }
   });
 };

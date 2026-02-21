@@ -12,7 +12,7 @@ const app = new Hono()
     const user = c.get("user");
 
     const { name , key , description } = c.req.valid("json");
-    const workspace = await databases.createDocument(DATABASE_ID , WORKSPACES_ID , ID.unique() , { name , key , description });
+    const workspace = await databases.createDocument(DATABASE_ID , WORKSPACES_ID , ID.unique() , { name , key , description , userId : user.$id });
     
     return c.json({ data: workspace });
 

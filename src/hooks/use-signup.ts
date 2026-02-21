@@ -4,6 +4,7 @@ import type { z } from "zod";
 import type { signupFormSchema } from "@/app/(auth)/schema";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const typedClient = client as typeof client & {
   api: {
@@ -38,8 +39,17 @@ export const useSignUp = () => {
     },
 
     onSuccess: () => {
+
+      toast.success("Account Created Successfully !!");
       router.refresh();
       queryClient.invalidateQueries({ queryKey: ["current"] });
+
+    },
+
+    onError: () => {
+
+      toast.error("Failed to signup !!");
+      
     }
   });
 };

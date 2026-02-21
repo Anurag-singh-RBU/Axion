@@ -1,6 +1,8 @@
+
 import Link from "next/link";
 import { ArrowRight, Package, Zap, CheckCircle, Cpu, Bot, Feather } from "lucide-react";
 import { SparklesIcon } from "@/components/ui/sparkles";
+import AnimatedGenerateButton from "../../../components/animated-generate-button-shadcn-tailwind"
 
 const Hero = () => {
   const features = [
@@ -18,15 +20,12 @@ const Hero = () => {
 
       <div className="hero-main-content sm:-mt-100 -mt-35 overflow-x-hidden ">
         <div className="hero-tag-fade">
-          <Link href="/tools" className="hero-new-badge-container max-w-full">
-            <span className="flex tracking-wider hero-new-badge font-HG justify-center items-center">
-              Free <SparklesIcon size={16}></SparklesIcon>
-            </span>
 
-            <div className="hero-new-badge-text">
-              <span>Open Source</span>
-              <ArrowRight size={16}/>
-            </div>
+          <Link href="/tools" className="hero-new-badge-container max-w-full">
+            <AnimatedGenerateButton
+              labelIdle="Free and Open Source"
+              labelActive="Building"
+              highlightHueDeg={5000}/>
           </Link>
         </div>
 

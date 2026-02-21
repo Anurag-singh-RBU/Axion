@@ -3,13 +3,12 @@ import { client } from "@/lib/rpc";
 import type { z } from "zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { workspaceSchema } from "../schema";
+import { toast } from "sonner"
 
 const typedClient = client as typeof client & {
     api: {
         workspaces: {
-            "workspaces": {
-                $post: (options: { json: z.infer<typeof workspaceSchema> }) => Promise<Response>;
-            };
+            $post: (options: { json: z.infer<typeof workspaceSchema> }) => Promise<Response>;
         };
     };
 };
@@ -23,7 +22,7 @@ export const useWorkspace = () => {
 
     return useMutation<ResponseType, Error, RequestType>({
         mutationFn: async (json) => {
-        const res = await typedClient.api.workspaces["workspaces"]["$post"]({json});
+        const res = await typedClient.api.workspaces.$post({ json });
 
         if(!res.ok){
 
@@ -37,8 +36,15 @@ export const useWorkspace = () => {
 
         onSuccess: () => {
 
-        queryClient.invalidateQueries({ queryKey: ["workspaces"] });
+            toast.success("Workspace Created !!") ;
+            queryClient.invalidateQueries({ queryKey: ["workspaces"] });
 
+        },
+
+        onError: () => {
+
+            toast.error("Failed to create workspace !!");
+            
         }
     });
 };

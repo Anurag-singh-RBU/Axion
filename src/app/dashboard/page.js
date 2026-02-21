@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { getCurrent } from "@/app/(auth)/actions";
 import { redirect } from "next/navigation";
-import CubeLoader from "../../components/cube-loader";
+import {Component} from "../../components/luma-spin";
 import WorkspaceCreatePage from "../../Features/workspaces/components/workspaceForm";
 
 const DashboardPage = () => {
@@ -39,7 +39,7 @@ const DashboardPage = () => {
         <section>
             {isLoading ? (
                 <div style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, background: "white" }}>
-                    <CubeLoader/>
+                    <Component/>
                 </div>
             ) : (
                 <div>
