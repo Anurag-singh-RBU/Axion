@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {DottedSeparator} from "../../../components/Dotted-Seperator";
 import { ListTodoIcon } from 'lucide-react';
+import WorkspaceSwitcher from './workspace-switcher';
 
 const SidebarContent = () => {
   const { isCollapsed } = useSidebar();
@@ -53,6 +54,14 @@ const SidebarContent = () => {
               </svg>
               <span className="font-HG mt-px">Members</span>
             </button>
+          </nav>
+
+          <nav className="flex flex-col gap-1 mt-5 text-[15px] font-HG">
+
+            <DottedSeparator color="gray"/>
+              <WorkspaceSwitcher></WorkspaceSwitcher>
+            <DottedSeparator color="gray"/>
+
           </nav>
         </>
       )}
@@ -133,6 +142,14 @@ export const Sidebar = () => {
               </svg>
                 <span className="font-HG mt-px">Members</span>
               </button>
+            </nav>
+
+            <nav className="flex flex-col gap-1 mt-5 text-[15px] font-HG">
+
+            <DottedSeparator color="gray"/>
+              <WorkspaceSwitcher></WorkspaceSwitcher>
+            <DottedSeparator color="gray"/>
+
             </nav>
           </div>
         </SheetContent>
