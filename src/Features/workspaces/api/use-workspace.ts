@@ -1,17 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import { client } from "@/lib/rpc";
 import type { z } from "zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { workspaceSchema } from "../schema";
 import { toast } from "sonner"
-
-const typedClient = client as typeof client & {
-    api: {
-        workspaces: {
-            $post: (options: { json: z.infer<typeof workspaceSchema> }) => Promise<Response>;
-        };
-    };
-};
 
 type RequestType = z.infer<typeof workspaceSchema>;
 type ResponseType = { success: string };
@@ -21,17 +12,36 @@ export const useWorkspace = () => {
     const queryClient = useQueryClient();
 
     return useMutation<ResponseType, Error, RequestType>({
-        mutationFn: async (json) => {
-        const res = await typedClient.api.workspaces.$post({ json });
+        mutationFn: async (form) => {
 
-        if(!res.ok){
+            const fd = new FormData();
+          
+            fd.append("name", form.name);
+            fd.append("key", form.key);
+            fd.append("description", form.description || "");
+          
+            if(form.image){
 
-            throw new Error("Workspace creation failed");
+              fd.append("image", form.image);
+
+            }
+
+            const res = await fetch("/api/workspaces", {
+
+              method: "POST",
+              body: fd,
+              credentials: "include",
+
+            });
+          
+            if(!res.ok){
+
+              throw new Error("Workspace creation failed");
+              
+            }
+          
+            return await res.json();
             
-        }
-
-        return await res.json();
-
         },
 
         onSuccess: () => {

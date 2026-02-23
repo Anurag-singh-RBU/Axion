@@ -27,212 +27,229 @@ import { ImageIcon } from "lucide-react";
 
 export default function WorkspaceCreatePage({className , ...props}) {
 
-    const { mutate } = useWorkspace();
-    const inputRef = useRef<HTMLInputElement>(null);
+  const { mutate } = useWorkspace();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-    const methods = useForm({
+  const methods = useForm({
 
-        resolver: zodResolver(workspaceSchema),
-        defaultValues: {
-            name: "",
-            key: "",
-            description: "",
-        },
+    resolver: zodResolver(workspaceSchema),
+    defaultValues: {
+      name: "",
+      key: "",
+      description: "",
+      image: null,
+    },
 
-    })
+  })
 
-    const onSubmit = (values) => {
+  const onSubmit = (values) => {
+  
+    const FINAL_VALUES = {
 
-        console.log(values);
-        mutate(values);
+      name: values.name || "",
+      key: values.key || "",
+      description: values.description || "",
+      image: values.image instanceof File ? values.image : null,
 
-    }
-
-    const { watch } = methods;
-
-    const name = watch("name");
-    const workspaceKey = watch("key");
-    const image = watch("image");
-
-    const calculateProgress = () => {
-        let filled = 0;
-        let total = 3;
-      
-        if(name?.trim()) filled++;
-        if(workspaceKey?.trim()) filled++;
-        if(image instanceof File) filled++;
-      
-        return Math.round((filled / total) * 100);
     };
-      
-    const progress = calculateProgress();
+  
+    mutate(FINAL_VALUES , {
 
-    return (
+      onSuccess : () => {
 
-        <div className="w-full sm:px-8 px-3 pt-6">
+        methods.reset();
 
-            <div className="mb-7 animate-fade-in">
-                <div className="relative inline-block">
-                    <h1 className="text-4xl font-black tracking-wide font-FT">
-                        Create workspace
-                    </h1>
+      },
 
-                    <img src="/underline.png" alt="" style={{ display: 'block', width: '120px', height: 'auto' }}/>
+    });
 
-                </div>
-            </div>
+  };
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
+  const { watch } = methods;
 
-            <div className="xl:col-span-2 sm:space-y-8">
+  const name = watch("name");
+  const workspaceKey = watch("key");
+  const image = watch("image");
 
-            <Card>
-                <CardHeader className="text-center">
-                <CardTitle className="text-xl font-FT tracking-wider">Create a New Workspace</CardTitle>
-                <CardDescription className="font-HG tracking-wide sm:text-sm text-xs">
-                    Enter your workspace details below. Workspace helps you organize your projects.
-                </CardDescription>
-                </CardHeader>
-                <CardContent>
-                <Form {...methods}>
-                <form
-                    onSubmit={methods.handleSubmit(onSubmit)}>
-                <FieldGroup>
-                <DottedSeparator color="gray" className="-mt-1"/>
-                    <FormField control={methods.control} name="name"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-4">Name</FormLabel>
-                                <FormControl>
-                                <Input id="name" type="text" placeholder="Enter your workspace name" {...field}/>
-                                </FormControl>
-                                <FormMessage className="ml-2"/>
-                            </FormItem>
-                        )}/>
-                        <FormField
-                            control={methods.control}
-                            name="image"
-                            render={({ field }) => (
-                                <div className="flex flex-col gap-y-2">
-                                    <div className="flex items-center gap-x-5">
-                                        {field.value ? (
-                                            <div className="size-[72px] relative rounded-md overflow-hidden">
-                                                <Image src = {
+  const calculateProgress = () => {
+      let filled = 0;
+      let total = 3;
+    
+      if(name?.trim()) filled++;
+      if(workspaceKey?.trim()) filled++;
+      if(image instanceof File) filled++;
+    
+      return Math.round((filled / total) * 100);
+  };
+    
+  const progress = calculateProgress();
 
-                                                    field.value instanceof File
-                                                    ? URL.createObjectURL(field.value)
-                                                    : typeof field.value === "string"
-                                                    ? field.value
-                                                    : ""
+  return (
 
-                                                } alt="ws img" fill className="object-cover"/>
-                                            </div>
-                                        ) : (
-                                            <Avatar className="size-[72px]">
-                                                <AvatarFallback>
-                                                    <ImageIcon className="size-[32px] text-neutral-400"></ImageIcon>
-                                                </AvatarFallback>
-                                            </Avatar> 
-                                        )}
-                                        <div className="flex flex-col justify-center">
-                                            <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 mb-2">
-                                              Workspace Logo
-                                            </FormLabel>
-                                            <span className="text-[11px] sm:block hidden font-HG ml-2 trcking-wide">
-                                                PNG , JPG , SVG or JPEG 
-                                                <span style={{ color: "#444", padding: "2px 4px", borderRadius: "3px", fontWeight: "bold", marginLeft: "8px"}} className="tracking-wider bg-lime-200">
-                                                  Max 1MB
-                                                </span>
-                                            </span>
-                                            <Input
-                                                id="image"
-                                                type="file"
-                                                className="hidden"
-                                                accept=".jpg , .png , .jpeg , .svg"
-                                                onChange={e => {
-                                                  if(e.target.files && e.target.files.length > 0){
+      <div className="w-full sm:px-8 px-3 pt-6">
 
-                                                    field.onChange(e.target.files[0]);
+          <div className="mb-7 animate-fade-in">
+              <div className="relative inline-block">
+                  <h1 className="text-4xl font-black tracking-wide font-FT">
+                    Create workspace
+                  </h1>
 
-                                                  }
+                  <img src="/underline.png" alt="" style={{ display: 'block', width: '120px', height: 'auto' }}/>
+
+              </div>
+          </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
+
+          <div className="xl:col-span-2 sm:space-y-8">
+
+          <Card>
+              <CardHeader className="text-center">
+              <CardTitle className="text-xl font-FT tracking-wider">Create a New Workspace</CardTitle>
+              <CardDescription className="font-HG tracking-wide sm:text-sm text-xs">
+                Enter your workspace details below. Workspace helps you organize your projects.
+              </CardDescription>
+              </CardHeader>
+              <CardContent>
+              <Form {...methods}>
+              <form
+                  onSubmit={methods.handleSubmit(onSubmit)}>
+              <FieldGroup>
+              <DottedSeparator color="gray" className="-mt-1"/>
+                  <FormField control={methods.control} name="name"
+                      render={({ field }) => (
+                          <FormItem>
+                              <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-4">Name</FormLabel>
+                              <FormControl>
+                              <Input id="name" type="text" placeholder="Enter your workspace name" {...field}/>
+                              </FormControl>
+                              <FormMessage className="ml-2"/>
+                          </FormItem>
+                      )}/>
+                      <FormField
+                          control={methods.control}
+                          name="image"
+                          render={({ field }) => (
+                              <div className="flex flex-col gap-y-2">
+                                  <div className="flex items-center gap-x-5">
+                                      {field.value ? (
+                                          <div className="size-[72px] relative rounded-md overflow-hidden">
+                                              <Image src = {
+
+                                                  field.value instanceof File
+                                                  ? URL.createObjectURL(field.value)
+                                                  : typeof field.value === "string"
+                                                  ? field.value
+                                                  : ""
+
+                                              } alt="ws img" fill className="object-cover"/>
+                                          </div>
+                                      ) : (
+                                          <Avatar className="size-[72px]">
+                                              <AvatarFallback>
+                                                  <ImageIcon className="size-[32px] text-neutral-400"></ImageIcon>
+                                              </AvatarFallback>
+                                          </Avatar> 
+                                      )}
+                                      <div className="flex flex-col justify-center">
+                                          <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 mb-2">
+                                            Workspace Logo
+                                          </FormLabel>
+                                          <span className="text-[11px] sm:block hidden font-HG ml-2 trcking-wide">
+                                              PNG , JPG , SVG or JPEG 
+                                              <span style={{ color: "#444", padding: "2px 4px", borderRadius: "3px", fontWeight: "bold", marginLeft: "8px"}} className="tracking-wider bg-lime-200">
+                                                Max 1MB
+                                              </span>
+                                          </span>
+                                          <Input
+                                              id="image"
+                                              type="file"
+                                              className="hidden"
+                                              accept=".jpg , .png , .jpeg , .svg"
+                                              onChange={e => {
+                                                if(e.target.files && e.target.files.length > 0){
+
+                                                  field.onChange(e.target.files[0]);
+
                                                 }
-                                            }/>
-                                            <Button
-                                                type="button"
-                                                variant="outline"
-                                                size="sm"
-                                                className="w-fit sm:mt-2 px-3 py-2 rounded-md bg-white border border-neutral-300 hover:bg-neutral-50 text-neutral-900 transition-colors duration-150"
-                                                onClick={() => {
-                                                  const input = document.getElementById("image");
-                                                  if (input) input.click();
-                                                }}>
-                                                <span className="flex items-center gap-2">
-                                                  <ImageIcon className="w-4 h-4 text-blue-500"/>
-                                                  <span className="font-HG text-sm">Upload Image</span>
-                                                </span>
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        />
-                        <FormField
-                            control={methods.control}
-                            name="key"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-2">
-                                    Key
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                    id="key"
-                                    type="text"
-                                    placeholder="Enter your workspace code"
-                                    {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage className="ml-2" />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField control={methods.control} name="description"
-                            render={({ field }) => (
-                            <FormItem>
-                                <div className="flex items-center">
-                                  <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-2">
-                                    Description
-                                  </FormLabel>
-                                  <span className="ml-2 sm:mt-0 -mt-2 px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-600 font-medium">
-                                    optional
-                                  </span>
-                                </div>
-                                <FormControl>
-                                  <textarea
-                                    id="description"
-                                    placeholder="Enter a description for your space"
-                                    className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    {...field}
+                                              }
+                                          }/>
+                                          <Button
+                                              type="button"
+                                              variant="outline"
+                                              size="sm"
+                                              className="w-fit sm:mt-2 px-3 py-2 rounded-md bg-white border border-neutral-300 hover:bg-neutral-50 text-neutral-900 transition-colors duration-150"
+                                              onClick={() => {
+                                                const input = document.getElementById("image");
+                                                if (input) input.click();
+                                              }}>
+                                              <span className="flex items-center gap-2">
+                                                <ImageIcon className="w-4 h-4 text-blue-500"/>
+                                                <span className="font-HG text-sm">Upload Image</span>
+                                              </span>
+                                          </Button>
+                                      </div>
+                                  </div>
+                              </div>
+                          )}
+                      />
+                      <FormField
+                          control={methods.control}
+                          name="key"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-2">
+                                  Key
+                              </FormLabel>
+                              <FormControl>
+                                  <Input
+                                  id="key"
+                                  type="text"
+                                  placeholder="Enter your workspace code"
+                                  {...field}
                                   />
-                            </FormControl>
-                        <FormMessage className="ml-2"/>
-                    </FormItem>
-                    )}/>
-                    <Field>
-                        <Button type="submit" className="font-HG tracking-wider active:scale-98 transition-transform duration-100" disabled={methods.formState.isSubmitting}>
-                        {methods.formState.isSubmitting && (
-                            <svg className="animate-spin mr-2 h-4 w-4 inline" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                            </svg>
-                        )}
-                        Create Workspace
-                        </Button>
-                    </Field>
-                </FieldGroup>
-            </form>
-        </Form>
-    </CardContent>
+                              </FormControl>
+                              <FormMessage className="ml-2" />
+                              </FormItem>
+                          )}
+                      />
+                      <FormField control={methods.control} name="description"
+                          render={({ field }) => (
+                          <FormItem>
+                              <div className="flex items-center">
+                                <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 -mt-2">
+                                  Description
+                                </FormLabel>
+                                <span className="ml-2 sm:mt-0 -mt-2 px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-600 font-medium">
+                                  optional
+                                </span>
+                              </div>
+                              <FormControl>
+                                <textarea
+                                  id="description"
+                                  placeholder="Enter a description for your space"
+                                  className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                  {...field}
+                                />
+                          </FormControl>
+                      <FormMessage className="ml-2"/>
+                  </FormItem>
+                  )}/>
+                  <Field>
+                      <Button type="submit" className="font-HG tracking-wider active:scale-98 transition-transform duration-100" disabled={methods.formState.isSubmitting}>
+                      {methods.formState.isSubmitting && (
+                          <svg className="animate-spin mr-2 h-4 w-4 inline" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                          </svg>
+                      )}
+                      Create Workspace
+                      </Button>
+                  </Field>
+              </FieldGroup>
+          </form>
+      </Form>
+  </CardContent>
 </Card>
 </div>
 
