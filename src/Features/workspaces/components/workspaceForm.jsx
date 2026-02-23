@@ -142,37 +142,37 @@ export default function WorkspaceCreatePage({className , ...props}) {
                                                 ? field.value
                                                 : ""
 
-                                            } alt="ws img" fill className="object-cover"/>
+                                            } alt="ws img" fill className="object-cover cursor-not-allowed"/>
                                         </div>
                                     ) : (
-                                        <Avatar className="size-[72px]">
-                                            <AvatarFallback>
-                                                <ImageIcon className="size-[32px] text-neutral-400"></ImageIcon>
-                                            </AvatarFallback>
-                                        </Avatar> 
+                                      <Avatar className="size-[72px]">
+                                        <AvatarFallback>
+                                          <ImageIcon className="size-[32px] text-neutral-400 dark:text-white"></ImageIcon>
+                                        </AvatarFallback>
+                                      </Avatar> 
                                     )}
                                     <div className="flex flex-col justify-center">
                                         <FormLabel className="font-GS tracking-wider ml-2 sm:mt-0 mb-2">
-                                          Workspace Logo
+                                          Workspace &nbsp;Icon
                                         </FormLabel>
-                                        <span className="text-[11px] sm:block hidden font-HG ml-2 trcking-wide">
-                                            PNG , JPG , SVG or JPEG 
-                                            <span style={{ color: "#444", padding: "2px 4px", borderRadius: "3px", fontWeight: "bold", marginLeft: "8px"}} className="tracking-wider bg-lime-200">
-                                              Max 1MB
-                                            </span>
+                                        <span className="text-[11px] sm:block hidden font-HG ml-2 trcking-wide dark:text-gray-300">
+                                          PNG , JPG , SVG or JPEG 
+                                          <span style={{ color: "#444", padding: "2px 4px", borderRadius: "3px", fontWeight: "bold", marginLeft: "8px"}} className="tracking-wider bg-lime-200">
+                                            Max 1MB
+                                          </span>
                                         </span>
                                         <Input
-                                            id="image"
-                                            type="file"
-                                            className="hidden"
-                                            accept=".jpg , .png , .jpeg , .svg"
-                                            onChange={e => {
-                                              if(e.target.files && e.target.files.length > 0){
+                                          id="image"
+                                          type="file"
+                                          className="hidden"
+                                          accept=".jpg , .png , .jpeg , .svg"
+                                          onChange={e => {
+                                            if(e.target.files && e.target.files.length > 0){
 
-                                                field.onChange(e.target.files[0]);
+                                              field.onChange(e.target.files[0]);
 
-                                              }
                                             }
+                                          }
                                         }/>
                                         <Button
                                             type="button"
@@ -183,9 +183,9 @@ export default function WorkspaceCreatePage({className , ...props}) {
                                               const input = document.getElementById("image");
                                               if (input) input.click();
                                             }}>
-                                            <span className="flex items-center gap-2">
+                                            <span className="flex items-center gap-2 cursor-pointer">
                                               <ImageIcon className="w-4 h-4 text-blue-500"/>
-                                              <span className="font-HG text-sm">Upload Image</span>
+                                              <span className="font-HG text-sm dark:text-gray-200">Upload Image</span>
                                             </span>
                                         </Button>
                                     </div>
@@ -236,14 +236,14 @@ export default function WorkspaceCreatePage({className , ...props}) {
                 </FormItem>
                 )}/>
                 <Field>
-                    <Button type="submit" className="font-HG tracking-wider active:scale-98 transition-transform duration-100" disabled={methods.formState.isSubmitting}>
+                    <Button type="submit" className="font-HG tracking-wider active:scale-98 transition-transform duration-100 cursor-pointer" disabled={methods.formState.isSubmitting}>
                     {methods.formState.isSubmitting && (
-                        <svg className="animate-spin mr-2 h-4 w-4 inline" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                        </svg>
+                      <svg className="animate-spin mr-2 h-4 w-4 inline" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                      </svg>
                     )}
-                    Create Workspace
+                      Create Workspace
                     </Button>
                 </Field>
             </FieldGroup>
@@ -254,15 +254,15 @@ export default function WorkspaceCreatePage({className , ...props}) {
 </div>
 
 <div className="flex flex-col h-full">
-<Card className="flex flex-col h-full min-h-0 flex-1 justify-between py-5 sm:px-6 px-4 bg-gradient-to-br from-white via-gray-50 to-gray-200 border rounded-2xl">
+<Card className="flex flex-col h-full min-h-0 flex-1 justify-between py-5 sm:px-6 px-4 bg-gradient-to-br from-white via-gray-50 to-gray-200 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-black border rounded-2xl">
   <div className="flex flex-col">
-    <h2 className="text-2xl font-FT font-extrabold mb-2 tracking-wider text-gray-900 flex items-center gap-2">
+    <h2 className="text-2xl font-FT font-extrabold mb-2 tracking-wider text-gray-900 dark:text-white flex items-center gap-2">
       WORKSPACE
       <span className="ml-2 font-HG tracking-wider inline-block bg-gradient-to-r from-blue-400 to-violet-500 text-white px-2 py-1 rounded text-xs font-medium">
         Guide
       </span>
     </h2>
-    <p className="text-sm text-gray-700 mb-3 font-HG pl-0.5">
+    <p className="text-sm text-gray-700 mb-3 font-HG pl-0.5 dark:text-gray-300">
       Follow these steps to get your workspace up.
     </p>
     <div className="mb-2">
@@ -271,19 +271,19 @@ export default function WorkspaceCreatePage({className , ...props}) {
           <span className="inline-block bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded font-bold mr-2">
             Name your workspace
           </span>
-          <span className="text-black font-normal">Eg : Axion Service System</span>
+          <span className="text-black font-normal dark:text-white">Eg : Axion Service System</span>
         </li>
         <li>
           <span className="inline-block bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold mr-2">
             Pick a unique key
           </span>
-          <span className="text-black font-normal">Eg : ASS<span className="text-xs font-JBM">-</span>2026</span>
+          <span className="text-black font-normal dark:text-white">Eg : ASS<span className="text-xs font-JBM dark:text-white">-</span>2026</span>
         </li>
         <li>
           <span className="inline-block bg-violet-100 text-violet-800 px-2 py-0.5 rounded font-bold mr-2">
             Add a description
           </span>
-          <span className="text-black font-normal">Shortly describe its purpose.</span>
+          <span className="text-black font-normal dark:text-white">Shortly describe its purpose.</span>
         </li>
       </ol>
     </div>
@@ -295,21 +295,23 @@ export default function WorkspaceCreatePage({className , ...props}) {
       </svg>
       <span className="flex items-center gap-2">
         <span className="text-black">
-          <span className="ml-1 text-xs text-black font-medium tracking-wide whitespace-nowrap">Workspace key cannot be changed once created.</span>
+          <span className="ml-1 text-xs text-black font-medium tracking-wide whitespace-nowrap dark:text-teal-300">Workspace key cannot be changed once created.</span>
         </span>
       </span>
     </div>
     <div className="flex gap-3 mt-3 w-full">
-      <Button variant="default" className="flex-1 bg-gradient-to-r from-black to-gray-800 text-white hover:from-gray-900 hover:to-black shadow-sm font-HG px-6" type="button">
+      <Button variant="default" className="flex-1 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 
+dark:border-slate-700 bg-gradient-to-r from-black to-gray-800 text-white hover:from-gray-900 hover:to-black shadow-sm font-HG px-6" type="button">
         Know More
       </Button>
-      <Button variant="outline" type="button" className="flex-1 font-HG px-6 bg-gradient-to-r from-blue-50 via-white to-blue-100 border text-primary transition-colors relative shadow-xs">
-        <span className="relative z-10" style={{ wordSpacing: "2px" }}>Support Help</span>
+      <Button variant="outline" type="button" className="flex-1 dark:border-dotted dark:border-gray-400 font-HG px-6 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 
+dark:border-slate-700 bg-gradient-to-r from-blue-50 via-white to-blue-100 border text-primary transition-colors relative shadow-xs">
+        <span className="relative z-10 dark:text-white" style={{ wordSpacing: "2px" }}>Support Help</span>
       </Button>
     </div>
   </div>
   <div className="flex-1 flex flex-col justify-end min-h-0">
-    <div className="relative rounded-xl bg-gradient-to-br from-blue-100 via-white to-blue-200 border border-blue-300 overflow-hidden px-4 py-4 h-full">
+    <div className="relative rounded-xl bg-gradient-to-br from-blue-100 via-white to-blue-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 border border-blue-300 dark:border-gray-600 overflow-hidden px-4 py-4 h-full">
       <div className="absolute top-0 right-0 opacity-30 pointer-events-none">
         <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
           <circle cx="100" cy="30" r="30" fill="#3b82f6" fillOpacity="0.15"/>
@@ -322,14 +324,14 @@ export default function WorkspaceCreatePage({className , ...props}) {
           <path d="M8 12h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           <path d="M12 8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
         </svg>
-        <h4 className="font-bold text-blue-900 text-base font-FT tracking-wide">
+        <h4 className="font-bold text-blue-900 text-base font-FT tracking-wide dark:text-blue-200">
           What is a Workspace ?
         </h4>
       </div>
-      <p className="text-xs text-blue-700 leading-normal text-justify font-HG">
+      <p className="text-xs text-blue-700 leading-normal text-justify font-HG dark:text-amber-50">
         A <span className="font-semibold text-black bg-pink-100 px-1 rounded">workspace</span> is your team’s private area for projects and collaboration.
         Each workspace has its own members and content
-        <span className="text-black font-medium"> - Manage your projects and tasks with ease.</span>
+        <span className="text-black font-medium dark:text-blue-200"> - Manage your projects and tasks with ease.</span>
         <br/><br/>
         <span
           className="font-semibold tracking-wider mr-1 -ml-1 px-2 rounded inline-flex items-center gap-1"
@@ -340,7 +342,7 @@ export default function WorkspaceCreatePage({className , ...props}) {
           }}>
           Note :
         </span>
-        Set a clear <span className="text-blue-800 font-semibold">name</span> , <span className="text-blue-800 font-semibold">code</span> and <span className="text-blue-800 font-semibold">description</span> to make your workspace instantly recognizable for everyone. Teamwork makes the dream work.
+        Set a clear <span className="text-blue-800 font-semibold dark:text-teal-200">name</span> , <span className="text-blue-800 font-semibold dark:text-red-200">code</span> and <span className="text-blue-800 font-semibold dark:text-purple-200">description</span> to make your workspace instantly recognizable for everyone. Teamwork makes the dream work.
       </p>
       <div className="mt-4 px-3 bg-white/90 rounded-xl border border-slate-100">
       <div className="w-full mt-2 mb-2">
@@ -358,7 +360,7 @@ export default function WorkspaceCreatePage({className , ...props}) {
                 {progress}% Done
               </span>
           </div>
-          <div className="relative w-full h-3 bg-blue-100 rounded-full overflow-hidden shadow-inner">
+          <div className="relative w-full h-3 bg-blue-100 dark:bg-blue-300 rounded-full overflow-hidden shadow-inner">
               <div 
               className="h-full rounded-full transition-all duration-500 -mb-2"
               style={{ 
@@ -370,9 +372,9 @@ export default function WorkspaceCreatePage({className , ...props}) {
       </div>
       </div>
       <div className="flex justify-center items-center mt-3">
-        <span className="flex items-center gap-2 px-3 font-HG text-xs font-semibold text-blue-800 tracking-wide">
+        <span className="flex items-center gap-2 px-3 font-HG text-xs font-semibold text-blue-800 dark:text-blue-300 tracking-wide">
           <span>
-            ALMOST THERE <span className="font-bold text-green-800"> - KEEP GOING </span>
+            ALMOST THERE <span className="font-bold text-green-800 dark:text-green-300"> - KEEP GOING </span>
           </span>
         </span>
       </div>

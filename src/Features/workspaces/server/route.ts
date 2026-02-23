@@ -3,7 +3,7 @@ import { Hono } from 'hono';
 import { workspaceSchema } from '../schema';
 import { sessionMiddleware } from '@/lib/sessionMiddleware';
 import { DATABASE_ID, IMAGES_BUCKET_ID, WORKSPACES_ID } from '@/config';
-import { ID } from 'node-appwrite';
+import { ID, Permission, Role } from 'node-appwrite';
 
 const app = new Hono()
 .get("/" , sessionMiddleware , async (c) => {
@@ -37,10 +37,21 @@ const app = new Hono()
                 IMAGES_BUCKET_ID,
                 ID.unique(),
                 image,
+                [
+                    Permission.read(Role.any()),
+                ]
             );
 
-            uploadedImgURL = file.$id;
+            // Store a direct Appwrite file view URL so the client can display the logo.
+            const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
+            const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT;
 
+            if (endpoint && projectId) {
+                uploadedImgURL = `${endpoint}/storage/buckets/${IMAGES_BUCKET_ID}/files/${file.$id}/view?project=${projectId}`;
+            } else {
+                // Fallback: still store the file id if env is missing
+                uploadedImgURL = file.$id;
+            }
         }
 
         const workspace = await databases.createDocument(

@@ -24,7 +24,7 @@ const Header = () => {
     const showOpenIcon = isMobile ? !isMobileOpen : isCollapsed;
 
     return (
-        <header className="sticky z-40 top-0 w-full border-b border-gray-200 bg-white">
+        <header className="sticky z-40 top-0 w-full border-b border-gray-200 bg-white dark:bg-neutral-900 dark:border-gray-700">
         <div className="flex sm:h-12 h-13 items-center justify-between px-2 sm:px-4 gap-2 sm:gap-4">
             <div className="flex items-center min-w-0 sm:ml-0 -ml-2">
             <Button
@@ -33,9 +33,9 @@ const Header = () => {
                 className="h-8 w-8 rounded hover:bg-gray-100"
                 onClick={toggleSidebar}>
                 {showOpenIcon ? (
-                <PanelLeftOpen className="h-4 w-4 text-gray-600"/>
+                <PanelLeftOpen className="h-4 w-4 text-gray-600 dark:text-white"/>
                 ) : (
-                <PanelLeftClose className="h-4 w-4 text-gray-600"/>
+                <PanelLeftClose className="h-4 w-4 text-gray-600 dark:text-white"/>
                 )}
             </Button>
             
@@ -43,7 +43,7 @@ const Header = () => {
                 variant="ghost"
                 size="icon"
                 className="h-8 w-8 rounded hover:bg-gray-100 sm:ml-0 -ml-2">
-                <LayoutGridIcon className="h-4 w-4 text-gray-600"/>
+                <LayoutGridIcon className="h-4 w-4 text-gray-600 dark:text-white"/>
             </Button>
 
             </div>
@@ -54,7 +54,7 @@ const Header = () => {
                 <Input
                   type="search"
                   placeholder="Search"
-                  className="sm:pl-9 pl-7 w-full bg-white border-gray-300 rounded-sm text-sm h-8 min-h-0 placeholder:-pt-1 shadow-none font-HG tracking-wide -pt-px"/>
+                  className="sm:pl-9 pl-7 w-full bg-white border-gray-300 dark:border-gray-700 rounded-sm text-sm h-8 min-h-0 placeholder:-pt-1 shadow-none font-HG tracking-wide -pt-px"/>
             </div>
             </div>
 
@@ -68,7 +68,7 @@ const Header = () => {
 
             <Button 
                 variant="outline" 
-                className="hidden md:flex border-purple-500 text-[#803FA5] hover:bg-purple-50 rounded-sm h-8 gap-1 items-center justify-center text-sm font-medium">
+                className="hidden md:flex border-purple-500 dark:border-purple-700 dark:text-[#aa61d4] text-[#803FA5] hover:bg-purple-50 rounded-sm h-8 gap-1 items-center justify-center text-sm font-medium">
                 <GemIcon className="h-4 w-4"/>
                 <span className='font-HG tracking-wide -mt-px ml-1'>See plans</span>
             </Button>
