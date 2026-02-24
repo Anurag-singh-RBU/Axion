@@ -381,8 +381,8 @@ dark:border-slate-700 bg-gradient-to-r from-blue-50 via-white to-blue-100 border
       </div>
       </div>
     </Card>
-    </div>
-    </div>
-    </div>
-    );
+  </div>
+  </div>
+  </div>
+  );
 }

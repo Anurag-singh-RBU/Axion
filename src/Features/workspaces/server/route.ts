@@ -27,6 +27,14 @@ const app = new Hono()
         const user = c.get("user");
 
         const { name , key , description , image } = c.req.valid("form");
+        // Log basic incoming payload info for debugging in deployed logs
+        console.log("Create workspace request:", {
+            name: !!name ? "[REDACTED]" : name,
+            key: !!key ? "[REDACTED]" : key,
+            description: !!description ? "[REDACTED]" : description,
+            hasImage: !!image,
+            userId: user?.$id,
+        });
         let uploadedImgURL : string | undefined;
 
         const canUseFileConstructor = typeof File !== "undefined";
