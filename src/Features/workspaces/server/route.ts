@@ -37,28 +37,52 @@ const app = new Hono()
         });
         let uploadedImgURL : string | undefined;
 
+        // Check env and runtime values to help diagnostics in production logs
+        try {
+            console.log("Env presence:", {
+                NEXT_PUBLIC_APPWRITE_ENDPOINT: !!process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT,
+                NEXT_PUBLIC_APPWRITE_PROJECT: !!process.env.NEXT_PUBLIC_APPWRITE_PROJECT,
+                IMAGES_BUCKET_ID: !!process.env.NEXT_PUBLIC_APPWRITE_IMAGES_ID,
+                DATABASE_ID: !!process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID,
+                WORKSPACES_ID: !!process.env.NEXT_PUBLIC_APPWRITE_WORKSPACES_ID,
+            });
+        } catch (e) {
+            console.log("Error checking env vars", e);
+        }
+
         const canUseFileConstructor = typeof File !== "undefined";
 
-        if (canUseFileConstructor && image instanceof File) {
+        if (image) {
+            // Only attempt to upload when we have an actual File-like object
+            if (canUseFileConstructor && image instanceof File) {
+                try {
+                    const file = await storage.createFile(
+                        IMAGES_BUCKET_ID,
+                        ID.unique(),
+                        image,
+                        [
+                            Permission.read(Role.any()),
+                        ]
+                    );
 
-            const file = await storage.createFile(
-                IMAGES_BUCKET_ID,
-                ID.unique(),
-                image,
-                [
-                    Permission.read(Role.any()),
-                ]
-            );
+                    const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
+                    const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT;
 
-            // Store a direct Appwrite file view URL so the client can display the logo.
-            const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
-            const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT;
-
-            if (endpoint && projectId) {
-                uploadedImgURL = `${endpoint}/storage/buckets/${IMAGES_BUCKET_ID}/files/${file.$id}/view?project=${projectId}`;
+                    if (endpoint && projectId) {
+                        uploadedImgURL = `${endpoint}/storage/buckets/${IMAGES_BUCKET_ID}/files/${file.$id}/view?project=${projectId}`;
+                    } else {
+                        uploadedImgURL = file.$id;
+                    }
+                } catch (uploadErr) {
+                    console.error("Error uploading image to storage:", uploadErr);
+                    // proceed without image rather than failing the whole request
+                    uploadedImgURL = undefined;
+                }
+            } else if (typeof image === "string") {
+                // If the client sent a string URL (already uploaded), use it
+                uploadedImgURL = image as string;
             } else {
-                // Fallback: still store the file id if env is missing
-                uploadedImgURL = file.$id;
+                console.log("Image provided but not a File or string; skipping upload.");
             }
         }
 
