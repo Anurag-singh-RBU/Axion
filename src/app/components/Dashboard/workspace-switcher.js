@@ -85,10 +85,7 @@ const WorkspaceSwitcher = () => {
 
                         if(logoSrc){
                             return (
-                                <img
-                                    src={logoSrc}
-                                    alt={current.name || "Workspace"}
-                                    className="h-7 w-7 object-cover rounded-md"/>
+                                <img src={logoSrc} alt={current.name || "Workspace"} className="h-7 w-7 object-cover rounded-md"/>
                             );
                         }
 
@@ -101,7 +98,7 @@ const WorkspaceSwitcher = () => {
                         {current.name || "Untitled workspace"}
                     </span>
                     <span className="text-[11px] font-HG text-gray-500">
-                    {current.key || "No key"} · Current
+                        {current.key || "No key"} · Current
                     </span>
                 </div>
                 </div>
