@@ -185,7 +185,7 @@ const WorkspaceSwitcher = () => {
                             <button
                                 type="button"
                                 onClick={() => setShowMore((prev) => !prev)}
-                                className="inline-flex items-center gap-1 text-[12px] font-HG text-gray-50 hover:text-gray-700 transition-colors">
+                                className="inline-flex items-center gap-1 text-[12px] font-HG text-gray-500 hover:text-gray-700 transition-colors">
                                 <span>
                                     {showMore
                                         ? "Hide additional workspaces"
