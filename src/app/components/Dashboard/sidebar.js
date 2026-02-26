@@ -33,21 +33,21 @@ const SidebarContent = () => {
       {!isCollapsed && (
         <>
           <nav className="flex flex-col gap-1 px-2 mt-5 text-[15px] font-HG">
-            <button className="flex items-center gap-3 w-full text-gray-700 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition">
-              <Home className="w-5 h-5 text-black dark:text-white"/>
-              <span className="font-HG mt-px dark:text-gray-300">Home</span>
+            <button className="flex items-center gap-3 w-full text-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-blue-500 dark:hover:text-black rounded-md px-2 py-2 font-medium transition-colors duration-150">
+              <Home className="w-5 h-5 text-black dark:text-white dark:hover:text-black"/>
+              <span className="font-HG mt-px dark:text-white">Home</span>
             </button>
-            <button className="flex items-center gap-3 w-full text-gray-700 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition">
-              <ListTodoIcon className="w-5 h-5 text-black dark:text-white"/>
-              <span className="font-HG dark:text-gray-300">My Tasks</span>
+            <button className="flex items-center gap-3 w-full text-gray-700 cursor-pointer dark:hover:bg-blue-500 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition">
+              <ListTodoIcon className="w-5 h-5 text-black dark:text-white dark:hover:text-black"/>
+              <span className="font-HG dark:text-white hover:text-black">My Tasks</span>
             </button>
-            <button className="flex items-center gap-3 w-full text-gray-700 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition">
-              <Settings className="w-5 h-5 text-black dark:text-white"/>
-              <span className="font-HG dark:text-gray-300">Settings</span>
+            <button className="flex items-center gap-3 w-full text-gray-700 cursor-pointer dark:hover:bg-blue-500 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition">
+              <Settings className="w-5 h-5 text-black dark:text-white dark:hover:text-black"/>
+              <span className="font-HG dark:text-white hover:text-black">Settings</span>
             </button>
-            <button className="flex items-center gap-3 w-full text-gray-700 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition -ml-px">
-              <Users className="w-5 h-5 text-black dark:text-white"/>
-              <span className="font-HG mt-px dark:text-gray-300">Members</span>
+            <button className="flex items-center gap-3 w-full text-gray-70 cursor-pointer dark:hover:bg-blue-500 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition -ml-px">
+              <Users className="w-5 h-5 text-black dark:text-white dark:hover:text-black"/>
+              <span className="font-HG mt-px dark:text-white hover:text-black">Members</span>
             </button>
           </nav>
 

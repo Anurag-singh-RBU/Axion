@@ -1140,3 +1140,12 @@ body{
   object-fit: cover;
   opacity: 0.6;
 }
+
+button:hover {
+  filter: brightness(0.97);
+}
+@media (prefers-color-scheme: dark) {
+  button:hover {
+    filter: none;
+  }
+}

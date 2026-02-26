@@ -60,7 +60,9 @@ const Header = () => {
 
             <div className="flex items-center gap-1 sm:gap-2 min-w-0">
             <div className="flex items-center gap-2">
-                <Button className="bg-[#1868DB] hover:bg-blue-700 cursor-pointer text-white rounded-sm h-8 gap-1 flex items-center justify-center text-sm">
+                <Button
+                    className="bg-[#1868DB] hover:bg-blue-700 cursor-pointer text-white rounded-sm h-8 gap-1 flex items-center justify-center text-sm"
+                    onClick={() => window.location.href = "/workspaces/create"}>
                     <div className="flex gap-1 items-center justify-center w-full h-full">
                         <Plus className="h-4 w-4"/>
                         <span className="inline font-HG tracking-wide ml-1 -mt-px">Create</span>
