@@ -58,7 +58,7 @@ const WorkspaceSwitcher = () => {
                 )}
             </div>
             </div>
-            <button type="button" className="inline-flex items-center -mt-5 gap-1 rounded-md bg-black dark:bg-[#1868DB] text-white px-2.5 py-1.5 text-[11px] font-HG tracking-wide shadow-sm hover:bg-amber-50 active:scale-[0.98] transition-transform cursor-pointer hover:text-black" onClick={() => window.location.href = "/workspaces/create"}>
+            <button type="button" className="inline-flex items-center -mt-5 gap-1 rounded-md bg-black dark:bg-[#1868DB] text-white px-2.5 py-1.5 text-[11px] font-HG tracking-wide shadow-sm active:scale-[0.98] transition-transform cursor-pointer" onClick={() => window.location.href = "/workspaces/create"}>
                 <Plus className="h-3.5 w-3.5"/>
                 <span className="inline font-HG tracking-wide">New</span>
             </button>
