@@ -48,7 +48,7 @@ const Header = () => {
 
             </div>
 
-            <div className="flex-1 max-w-2xl sm:mx-4 md:mx-8 sm:ml-0 -ml-1">
+            <div className="flex-1 max-w-2xl sm:mx-4 md:mx-8 sm:ml-4 -ml-1">
             <div className="relative">
                 <Search className="absolute sm:left-3 left-1.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
@@ -58,29 +58,31 @@ const Header = () => {
             </div>
             </div>
 
-            <div className="flex items-center gap-1 sm:gap-2 min-w-0 sm:-ml-10">
-            <Button className="bg-[#1868DB] hover:bg-blue-700 text-white rounded-sm h-8 gap-1 flex items-center justify-center text-sm">
-                <div className="flex gap-1 items-center justify-center w-full h-full">
-                    <Plus className="h-4 w-4"/>
-                    <span className="inline font-HG tracking-wide ml-1 -mt-px">Create</span>
-                </div>
-            </Button>
+            <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+            <div className="flex items-center gap-2">
+                <Button className="bg-[#1868DB] hover:bg-blue-700 cursor-pointer text-white rounded-sm h-8 gap-1 flex items-center justify-center text-sm">
+                    <div className="flex gap-1 items-center justify-center w-full h-full">
+                        <Plus className="h-4 w-4"/>
+                        <span className="inline font-HG tracking-wide ml-1 -mt-px">Create</span>
+                    </div>
+                </Button>
 
-            <Button 
-                variant="outline" 
-                className="hidden md:flex border-purple-500 dark:border-purple-700 dark:text-[#aa61d4] text-[#803FA5] hover:bg-purple-50 rounded-sm h-8 gap-1 items-center justify-center text-sm font-medium">
-                <GemIcon className="h-4 w-4"/>
-                <span className='font-HG tracking-wide -mt-px ml-1'>See plans</span>
-            </Button>
+                <Button 
+                    variant="outline" 
+                    className="hidden md:flex border-purple-500 dark:border-purple-700 dark:text-[#aa61d4] text-[#803FA5] hover:bg-purple-50 rounded-sm h-8 gap-1 items-center justify-center text-sm font-medium">
+                    <GemIcon className="h-4 w-4"/>
+                    <span className='font-HG tracking-wide -mt-px ml-1'>See plans</span>
+                </Button>
 
-            <button className="sm:flex hidden items-center gap-2 px-2 py-1.5 border border-gray-300 rounded-sm bg-white text-gray-800 hover:bg-gray-50 text-sm font-medium">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L3 7v10l9 5 9-5V7l-9-5Z" fill="#6366F1"/>
-                    <path d="M12 7v10" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M7 12h10" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-                <span className='font-HG tracking-wide -mt-px'>Ask Rovo</span>
-            </button>
+                <button className="sm:flex hidden items-center gap-2 px-2 py-1.5 border border-gray-300 rounded-sm bg-white text-gray-800 hover:bg-gray-50 text-sm font-medium">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L3 7v10l9 5 9-5V7l-9-5Z" fill="#6366F1"/>
+                        <path d="M12 7v10" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M7 12h10" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                    <span className='font-HG tracking-wide -mt-px'>Ask Rovo</span>
+                </button>
+            </div>
 
             <div className="hidden md:flex items-center ml-2">
                 <ThemeSwitcher/>

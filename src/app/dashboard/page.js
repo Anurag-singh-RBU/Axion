@@ -5,28 +5,37 @@ import { getCurrent } from "@/app/(auth)/actions";
 import { redirect } from "next/navigation";
 import {Component} from "../../components/luma-spin";
 import WorkspaceCreatePage from "../../Features/workspaces/components/workspaceForm";
+import { getWorkspaces } from "../workspaces/[workspaceId]/actions";
 
 const DashboardPage = () => {
 
     const [isLoading , setIsLoading] = useState(true);
     const [user , setUser] = useState(null);
-
+  
     useEffect(() => {
-
+        
         const fetchUser = async () => {
-
+            
             const user = await getCurrent();
+            const workspaces = await getWorkspaces();
 
             if(!user){
 
                 redirect("/sign-in");
 
-            } 
-            
+            }
+
+            if(workspaces.total === 0){
+
+                redirect("/workspaces/create");
+
+            }
+        
             else{
 
                 setUser(user);
                 setIsLoading(false);
+                redirect(`workspaces/${workspaces.documents[0].$id}`)
 
             }
         };
@@ -35,19 +44,6 @@ const DashboardPage = () => {
 
     }, []);
 
-    return (
-        <section>
-            {isLoading ? (
-                <div style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, background: "white" }}>
-                    <Component/>
-                </div>
-            ) : (
-                <div>
-                    <WorkspaceCreatePage></WorkspaceCreatePage>
-                </div>
-            )}
-        </section>
-    );
 };
 
 export default DashboardPage;

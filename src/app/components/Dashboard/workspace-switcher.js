@@ -4,8 +4,13 @@ import React, { useState } from "react";
 import { useGetWorkspaces } from "@/Features/workspaces/api/use-get-workspace";
 import { IMAGES_BUCKET_ID } from "@/config";
 import { ChevronDown, Briefcase, Plus, Clock, Star } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useWorkspaceId } from "@/hooks/use-workspaceId";
 
 const WorkspaceSwitcher = () => {
+
+    const router = useRouter();
+    const workspaceId = useWorkspaceId();
     const { data, isLoading } = useGetWorkspaces();
     const [isOpen, setIsOpen] = useState(true);
     const [showMore, setShowMore] = useState(false);
@@ -14,14 +19,12 @@ const WorkspaceSwitcher = () => {
     const workspaces = data?.documents || [];
     const total = data?.total || 0;
 
-    // Set initial selected workspace to the first one when data loads
     React.useEffect(() => {
         if (workspaces.length > 0 && !selectedWorkspaceId) {
             setSelectedWorkspaceId(workspaces[0].$id);
         }
     }, [workspaces, selectedWorkspaceId]);
 
-    // Current workspace is the selected one (or first one if nothing selected)
     const current = selectedWorkspaceId 
         ? workspaces.find(ws => ws.$id === selectedWorkspaceId) || workspaces[0]
         : workspaces[0];
@@ -29,10 +32,11 @@ const WorkspaceSwitcher = () => {
     const recent = workspaces.slice(0, 3);
     const extra = workspaces.slice(3);
 
-    // Handle workspace selection - set as current
     const handleWorkspaceSelect = (workspaceId) => {
+
         setSelectedWorkspaceId(workspaceId);
-        console.log('Selected workspace:', workspaceId);
+        router.push(`/workspaces/${workspaceId}`);
+
     };
 
     return (
@@ -44,7 +48,7 @@ const WorkspaceSwitcher = () => {
             </p>
             <div className="flex items-center gap-2 mt-2">
                 <span className="text-sm font-GS text-gray-900 dark:text-gray-300 tracking-wider">
-                    {isLoading ? "Loading" : `${total} active`}
+                    {isLoading ? "Please wait" : `${total} active`}
                 </span>
                 {total > 0 && (
                 <span className="inline-flex justify-center items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-HG text-emerald-700 border border-emerald-100">
