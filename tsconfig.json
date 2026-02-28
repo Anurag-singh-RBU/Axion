@@ -28,6 +28,6 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-, "src/server/route.ts"  ],
+, "src/server/route.ts", "src/components/ui/dialog.jsx"  ],
   "exclude": ["node_modules"]
 }
