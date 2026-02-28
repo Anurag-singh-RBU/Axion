@@ -34,7 +34,7 @@ const Header = () => {
                 className="h-8 w-8 rounded hover:bg-gray-100"
                 onClick={toggleSidebar}>
                 {showOpenIcon ? (
-                    <SidebarMenu className="text-black hover:text-primary dark:hover:text-secondary-foreground size-5"/>
+                    <SidebarMenu className="text-muted-foreground hover:text-primary dark:hover:text-secondary-foreground size-5"/>
                 ) : (
                     <SidebarMenu className="text-muted-foreground hover:text-primary dark:hover:text-secondary-foreground size-5"/>
                 )}
@@ -51,7 +51,7 @@ const Header = () => {
 
             <div className="flex-1 max-w-2xl sm:mx-4 md:mx-8 sm:ml-4 -ml-1">
             <div className="relative">
-                <Search className="absolute sm:left-3 left-1.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute sm:left-3 left-1.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"/>
                 <Input
                   type="search"
                   placeholder="Search"

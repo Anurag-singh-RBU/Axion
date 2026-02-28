@@ -139,7 +139,7 @@ export const Sidebar = () => {
               </button>
             </nav>
 
-            <nav className="flex flex-col gap-1 mt-5 text-[15px] font-HG">
+            <nav className="flex flex-col gap-1 mt-3 text-[15px] font-HG">
 
             <DottedSeparator color="gray"/>
               <WorkspaceSwitcher></WorkspaceSwitcher>
