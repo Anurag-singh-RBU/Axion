@@ -1,10 +1,11 @@
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
-import { workspaceSchema } from '../schema';
+import { updateWorkspaceSchema, workspaceSchema } from '../schema';
 import { sessionMiddleware } from '@/lib/sessionMiddleware';
 import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from '@/config';
 import { ID, Permission, Query, Role } from 'node-appwrite';
 import { generateInviteCode } from '@/lib/utils';
+import { getMember } from '@/types/members/utils';
 
 const app = new Hono()
 .get("/" , sessionMiddleware , async (c) => {
@@ -44,6 +45,41 @@ const app = new Hono()
     return c.json({data : workspaces});
     
 })
+.get("/:workspaceId" , sessionMiddleware , async (c) => {
+
+    try {
+
+        const databases = c.get("databases");
+        const user = c.get("user");
+
+        const workspaceId = c.req.param("workspaceId");
+
+        const member = await getMember(databases, workspaceId, user.$id);
+
+        if(!member){
+
+            return c.json({ error: "Unauthorized" }, 403);
+
+        }
+
+        const workspace = await databases.getDocument(
+
+            DATABASE_ID,
+            WORKSPACES_ID,
+            workspaceId
+
+        );
+
+        return c.json({ data: workspace });
+
+    } catch (error) {
+
+        console.error("Error fetching workspace:", error);
+        return c.json({ error: "Failed to fetch workspace" }, 500);
+
+    }
+
+})
 .post("/" , zValidator("form" , workspaceSchema) , sessionMiddleware , async (c) => {
     try {
         const databases = c.get("databases");
@@ -58,6 +94,7 @@ const app = new Hono()
             hasImage: !!image,
             userId: user?.$id,
         });
+
         let uploadedImgURL : string | undefined;
 
         try {
@@ -143,6 +180,102 @@ const app = new Hono()
         return c.json({ error: "Failed to create workspace" } , 500);
 
     }
+})
+.patch("/:workspaceId" , zValidator("form" , updateWorkspaceSchema) , sessionMiddleware , async (c) => {
+
+    try {
+
+        const databases = c.get("databases");
+        const user = c.get("user");
+        const storage = c.get("storage");
+
+        const workspaceId = c.req.param("workspaceId");
+        const { name , description , image } = c.req.valid("form");
+
+        const member = await getMember(databases , workspaceId , user.$id);
+
+        if(!member || member.role !== "ADMIN"){
+
+            return c.json({ error : "Unauthorized" } , 403);
+
+        }
+
+        let uploadedImgURL : string | undefined;
+
+        if (image) {
+
+            if (typeof image === "string") {
+
+                uploadedImgURL = image as string;
+
+            }
+
+            else if (typeof File !== "undefined" && image instanceof File) {
+
+                try {
+
+                    const file = await storage.createFile(
+                        IMAGES_BUCKET_ID,
+                        ID.unique(),
+                        image,
+                        [
+                            Permission.read(Role.any()),
+
+                        ]
+
+                    );
+
+                    const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
+                    const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT;
+
+                    if (endpoint && projectId) {
+
+                        uploadedImgURL = `${endpoint}/storage/buckets/${IMAGES_BUCKET_ID}/files/${file.$id}/view?project=${projectId}`;
+
+                    } else {
+
+                        uploadedImgURL = file.$id;
+
+                    }
+
+                } catch (uploadErr) {
+
+                    console.error("Error uploading image to storage:", uploadErr);
+                    uploadedImgURL = undefined;
+
+                }
+
+            } else {
+
+                console.log("Image provided but not a File or string; skipping upload.");
+
+            }
+
+        }
+
+        const workspace = await databases.updateDocument(
+
+            DATABASE_ID,
+            WORKSPACES_ID,
+            workspaceId,
+            {
+                name,
+                description,
+                imageUrl : uploadedImgURL
+
+            }
+
+        );
+
+        return c.json({ data : workspace });
+
+    } catch (error) {
+
+        console.error("Error updating workspace :", error);
+        return c.json({ error : "Failed to update workspace" } , 500);
+
+    }
+
 })
 
 export default app;

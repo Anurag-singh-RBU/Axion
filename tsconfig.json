@@ -10,6 +10,7 @@
     "module": "esnext",
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -28,6 +29,6 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-, "src/server/route.ts", "src/components/ui/dialog.jsx"  ],
+, "src/server/route.ts", "src/components/ui/dialog.jsx", "src/Features/workspaces/components/updateWorkspaceForm.jsx"  ],
   "exclude": ["node_modules"]
 }

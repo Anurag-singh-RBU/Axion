@@ -15,13 +15,13 @@ const SidebarContent = () => {
 
   return (
     <div className={`h-full bg-white dark:bg-neutral-900 dark:border-neutral-800 border-r border-gray-200 transition-all duration-300 ${
-      isCollapsed ? 'w-[64px]' : 'w-[264px]'
+      isCollapsed ? 'w-16' : 'w-66'
     }`}>
 
     <div className="flex flex-col h-full">
       <div className="flex items-center gap-3 px-4 pt-3">
         <div className="bg-white rounded-full">
-          <img src="/logo.png" alt="Axion Logo" className="h-7 w-7 object-cover rounded-md"/>
+          <Image src="/logo.png" alt="Axion Logo" width={28} height={28} className="object-cover rounded-md"/>
         </div>
         {!isCollapsed && (
           <Link href="/" className="text-black font-bold font-JBM text-xl dark:text-white">
@@ -101,14 +101,14 @@ export const Sidebar = () => {
       <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
         <SheetContent 
           side="left" 
-          className="w-[240px] p-0 bg-white top-[53px]! bottom-0! h-[calc(100vh-3rem)]!">
+          className="w-60 p-0 bg-white top-13.25! bottom-0! h-[calc(100vh-3rem)]!">
           <SheetHeader className="sr-only">
             <SheetTitle>Navigation Menu</SheetTitle>
           </SheetHeader>
           <div className="flex flex-col h-full">
             <div className="flex items-center gap-3 px-4 pt-4 pb-2">
               <div className="bg-white rounded-full">
-                <img src="/logo.png" alt="Axion Logo" className="h-7 w-7 object-cover"/>
+                <Image src="/logo.png" alt="Axion Logo" width={28} height={28} className="object-cover"/>
               </div>
               <Link href="/" className="text-black font-bold font-JBM text-xl">
                 AXION
