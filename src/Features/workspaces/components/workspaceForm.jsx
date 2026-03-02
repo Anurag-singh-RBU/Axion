@@ -63,7 +63,7 @@ export default function WorkspaceCreatePage({ className, ...props }) {
 
         const workspaceId = data.$id;
 
-        if(workspaceId){
+        if (workspaceId) {
           router.push(`/workspaces/${workspaceId}`);
         }
       },
@@ -518,23 +518,20 @@ export default function WorkspaceCreatePage({ className, ...props }) {
                         <svg
                           className="w-4 h-4 text-blue-500"
                           fill="none"
-                          viewBox="0 0 24 24"
-                        >
+                          viewBox="0 0 24 24">
                           <circle
                             cx="12"
                             cy="12"
                             r="10"
                             stroke="#3b82f6"
                             strokeWidth="2"
-                            fill="#e0eaff"
-                          />
+                            fill="#e0eaff"/>
                           <path
                             d="M8 12l2.5 2.5L16 9"
                             stroke="#2563eb"
                             strokeWidth="2"
                             strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
+                            strokeLinejoin="round"/>
                         </svg>
                         <span className="font-bold text-blue-900 text-xs font-FT ml-1 tracking-wide">
                           PROGRESS
@@ -549,10 +546,9 @@ export default function WorkspaceCreatePage({ className, ...props }) {
                         className="h-full rounded-full transition-all duration-500 -mb-2"
                         style={{
                           width: `${progress}%`,
-                          background:
-                            "linear-gradient(90deg, #bbf7d0 0%, #6ee7b7 40%, #4ade80 100%)",
-                        }}
-                      ></div>
+                          background: "linear-gradient(90deg, #bbf7d0 0%, #6ee7b7 40%, #4ade80 100%)",
+                        }}> 
+                      </div>
                     </div>
                   </div>
                 </div>
