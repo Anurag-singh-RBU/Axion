@@ -9,8 +9,11 @@ import Link from "next/link";
 import {DottedSeparator} from "../../../components/Dotted-Seperator";
 import { ListTodoIcon } from 'lucide-react';
 import WorkspaceSwitcher from './workspace-switcher';
+import { useRouter } from 'next/navigation';
 
 const SidebarContent = () => {
+
+  const router = useRouter();
   const { isCollapsed } = useSidebar();
 
   return (
@@ -41,7 +44,7 @@ const SidebarContent = () => {
               <ListTodoIcon className="w-5 h-5 text-black dark:text-white dark:hover:text-black"/>
               <span className="font-HG dark:text-white hover:text-black">My Tasks</span>
             </button>
-            <button className="flex items-center gap-3 w-full text-gray-700 cursor-pointer dark:hover:bg-blue-500 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition">
+            <button className="flex items-center gap-3 w-full text-gray-700 cursor-pointer dark:hover:bg-blue-500 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition" onClick={() => router.push("/dashboard/settings")}>
               <Settings className="w-5 h-5 text-black dark:text-white dark:hover:text-black"/>
               <span className="font-HG dark:text-white hover:text-black">Settings</span>
             </button>
@@ -124,10 +127,10 @@ export const Sidebar = () => {
                 <ListTodoIcon className="w-5 h-5 text-black"/>
                 <span className="font-HG">My Tasks</span>
               </button>
-              <button className="flex items-center gap-3 w-full text-gray-700 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition">
-                <Settings className="w-5 h-5 text-black"/>
-                <span className="font-HG">Settings</span>
-              </button>
+                <button className="flex items-center gap-3 w-full text-gray-700 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition" onClick={() => router.push("/dashboard/settings")}>
+                  <Settings className="w-5 h-5 text-black"/>
+                  <span className="font-HG">Settings</span>
+                </button>
               <button className="flex items-center gap-3 w-full text-gray-700 hover:bg-gray-100 rounded-md px-2 py-2 font-medium transition -ml-px">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor" fill="none" stroke="#141B34" stroke-width="1.5">
                   <path d="M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z" />

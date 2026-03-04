@@ -1,8 +1,6 @@
 "use client"
 
 import React, { useState } from "react";
-import { useSound } from "@/hooks/use-sound";
-import { click004Sound } from "../../../lib/click-004";
 import { useGetWorkspaces } from "@/Features/workspaces/api/use-get-workspace";
 import { IMAGES_BUCKET_ID } from "@/config";
 import { ChevronDown, Briefcase, Plus, Clock, Star } from "lucide-react";
@@ -33,11 +31,11 @@ import {
 } from "../../../components/ui/avatar";
 import { ImageIcon } from "lucide-react";
 import Signature from "@/Features/workspaces/components/signature";
+import HourglassStart from "@/app/assets/icons/hourglass-start";
 
 const WorkspaceSwitcher = () => {
 
   const { mutate } = useWorkspace();
-  const play = useSound(click004Sound);
 
   const methods = useForm({
     resolver: zodResolver(workspaceSchema),
@@ -84,22 +82,22 @@ const WorkspaceSwitcher = () => {
   const total = data?.total || 0;
 
   React.useEffect(() => {
-      if (workspaces.length > 0 && !selectedWorkspaceId) {
-          setSelectedWorkspaceId(workspaces[0].$id);
-      }
+    if (workspaces.length > 0 && !selectedWorkspaceId) {
+        setSelectedWorkspaceId(workspaces[0].$id);
+    }
   }, [workspaces, selectedWorkspaceId]);
 
   const current = selectedWorkspaceId 
-      ? workspaces.find(ws => ws.$id === selectedWorkspaceId) || workspaces[0]
-      : workspaces[0];
+    ? workspaces.find(ws => ws.$id === selectedWorkspaceId) || workspaces[0]
+    : workspaces[0];
 
   const recent = workspaces.slice(0, 3);
   const extra = workspaces.slice(3);
 
   const handleWorkspaceSelect = (workspaceId) => {
 
-      setSelectedWorkspaceId(workspaceId);
-      router.push(`/workspaces/${workspaceId}`);
+    setSelectedWorkspaceId(workspaceId);
+    router.push(`/workspaces/${workspaceId}`);
 
   };
 
@@ -584,7 +582,7 @@ const WorkspaceSwitcher = () => {
                   <div className="mt-3 rounded-lg border border-dashed border-gray-200 bg-white/60 px-2.5 py-2.5 dark:bg-teal-50">
                   <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-1.5">
-                          <Clock className="h-3.5 w-3.5 text-gray-500 dark:text-black"/>
+                          <HourglassStart className="h-3.5 w-3.5 text-gray-500 dark:text-black"/>
                           <span className="text-[11px] font-HG uppercase tracking-[0.14em] text-gray-500 dark:text-black">
                               Recent
                           </span>

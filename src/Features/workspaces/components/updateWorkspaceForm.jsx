@@ -26,11 +26,6 @@ import { useUpdateWorkspace } from "../api/use-update-workspace";
 import { DottedSeparator } from "../../../components/Dotted-Seperator";
 import Image from "next/image";
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "../../../components/ui/avatar";
-import {
   ImageIcon,
   Upload,
   X,
@@ -45,26 +40,6 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-
-// Tooltip content definitions
-const TOOLTIPS = {
-  name: {
-    title: "Workspace Name",
-    content: "A descriptive name for your workspace visible to all team members.",
-  },
-  key: {
-    title: "Workspace Key",
-    content: "A unique identifier (2-10 chars). Used in project codes. Cannot be changed after creation.",
-  },
-  description: {
-    title: "Description",
-    content: "Optional. Briefly describe your workspace purpose to help team members.",
-  },
-  image: {
-    title: "Workspace Icon",
-    content: "Upload a logo. Recommended: Square image, PNG or SVG format, max 1MB.",
-  },
-};
 
 export default function WorkspaceUpdateForm({
   className,
@@ -219,7 +194,7 @@ export default function WorkspaceUpdateForm({
 
   const steps = [
     { title: "Name", desc: "Set Workspace Name" },
-    { title: "Key", desc: "Unique Identifier" },
+    { title: "Key", desc: "Unique Workspace Identity" },
     { title: "Icon", desc: "Add Workspace Icon" },
     { title: isEditMode ? "Save" : "Create", desc: isEditMode ? "Apply changes" : "Launch Workspace" },
   ];
@@ -734,39 +709,11 @@ export default function WorkspaceUpdateForm({
               })}
 
               <div>
-                <div className="flex-1 flex items-end justify-center mb-1">
+                <div className="flex-1 flex items-end justify-center sm:mb-0 -mb-2">
                   <div className="py-2 px-2 flex flex-col items-center text-xs text-gray-500 dark:text-slate-300 text-center">
                     <div className="w-full flex flex-col items-center">
-                      <div className="flex items-center mb-1 gap-2">
-                        <div className="flex items-center gap-1.5 mb-1">
-                          <svg
-                            className="w-5 h-5 text-blue-600 dark:text-blue-300"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="#3b82f6"
-                              strokeWidth="2"
-                              fill="#e0eaff"
-                            />
-                            <path
-                              d="M12 8v4"
-                              stroke="#1e40af"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                            />
-                            <circle
-                              cx="12"
-                              cy="16"
-                              r="1"
-                              fill="#1e40af"
-                            />
-                          </svg>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-center gap-1.5">
                           <h4 className="font-bold text-blue-900 text-base font-FT tracking-wider dark:text-blue-200">
                             <span className="py-0.5 rounded">
                               Support <span className="text-blue-800 dark:text-blue-100">and</span> Help
