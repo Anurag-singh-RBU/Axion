@@ -1,5 +1,12 @@
-import { IconProps } from "@/types";
 import React from "react";
+
+export type IconProps = React.SVGProps<SVGSVGElement> & {
+  secondaryfill?: string;
+  strokewidth?: number;
+  title?: string;
+  className?: string;
+  fill?: string;
+};
 
 function Trash2({ fill = "currentColor", secondaryfill, ...props }: IconProps) {
   secondaryfill = secondaryfill || fill;
