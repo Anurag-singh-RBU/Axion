@@ -203,17 +203,39 @@ export default function WorkspaceCreatePage({ className, ...props }) {
                                   }
                                 }}
                               />
-                              <Button
+                              {field.value ? (
+
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="sm"
+                                  className="w-fit sm:mt-2 px-3 py-2 border-red-500 text-red-600 hover:bg-red-50 transition-colors"
+                                  onClick={() => {
+
+                                    field.onChange(null);
+                                    const input = document.getElementById("image");
+                                    if(input) input.value = "";
+
+                                  }}>
+                                  <span className="flex items-center gap-2 cursor-pointer">
+                                    <ImageIcon className="w-4 h-4 text-red-500" />
+                                    <span className="font-HG text-sm dark:text-red-300">
+                                      Remove Image
+                                    </span>
+                                  </span>
+                                </Button>
+
+                              ) : <Button
                                 type="button"
                                 variant="outline"
                                 size="sm"
                                 className="w-fit sm:mt-2 px-3 py-2 rounded-md bg-white border border-neutral-300 hover:bg-neutral-50 text-neutral-900 transition-colors duration-150"
                                 onClick={() => {
-                                  const input =
-                                    document.getElementById("image");
-                                  if (input) input.click();
-                                }}
-                              >
+
+                                  const input = document.getElementById("image");
+                                  if(input) input.click();
+
+                                }}>
                                 <span className="flex items-center gap-2 cursor-pointer">
                                   <ImageIcon className="w-4 h-4 text-blue-500" />
                                   <span className="font-HG text-sm dark:text-gray-200">
@@ -221,6 +243,7 @@ export default function WorkspaceCreatePage({ className, ...props }) {
                                   </span>
                                 </span>
                               </Button>
+                              }
                             </div>
                           </div>
                         </div>
@@ -525,13 +548,13 @@ export default function WorkspaceCreatePage({ className, ...props }) {
                             r="10"
                             stroke="#3b82f6"
                             strokeWidth="2"
-                            fill="#e0eaff"/>
+                            fill="#e0eaff" />
                           <path
                             d="M8 12l2.5 2.5L16 9"
                             stroke="#2563eb"
                             strokeWidth="2"
                             strokeLinecap="round"
-                            strokeLinejoin="round"/>
+                            strokeLinejoin="round" />
                         </svg>
                         <span className="font-bold text-blue-900 text-xs font-FT ml-1 tracking-wide">
                           PROGRESS
@@ -547,7 +570,7 @@ export default function WorkspaceCreatePage({ className, ...props }) {
                         style={{
                           width: `${progress}%`,
                           background: "linear-gradient(90deg, #bbf7d0 0%, #6ee7b7 40%, #4ade80 100%)",
-                        }}> 
+                        }}>
                       </div>
                     </div>
                   </div>

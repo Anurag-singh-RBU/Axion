@@ -16,6 +16,8 @@ import HardriveIcon from "@/app/assets/icons/hardrive"
 
 import { Eye, Trash2, Edit3, MoreHorizontal } from "lucide-react"
 import Link from "next/link"
+import { useDeleteWorkspace } from "@/Features/workspaces/api/use-delete-workspace"
+import { useConfirm } from "@/hooks/use-confirm"
 
 export type WorkspaceRow = {
   id: string,
@@ -30,6 +32,60 @@ export type WorkspaceRow = {
 
 // status type alias for convenience
 export type WorkspaceStatus = "active" | "disabled"
+
+const WorkspaceActions = ({ workspaceId, workspaceName }: { workspaceId: string; workspaceName: string }) => {
+  const [ConfirmDialog, confirm] = useConfirm({
+    title: "Delete Workspace",
+    message: `Are you sure you want to delete  \"${workspaceName}\ " ? This action cannot be undone.`,
+    confirmText: "Delete",
+    cancelText: "Cancel",
+    variant: "destructive",
+  });
+  const { mutate, isPending } = useDeleteWorkspace();
+
+  const onDeleteClick = async () => {
+    const ok = await confirm();
+
+    if (!ok) return;
+
+    mutate({ workspaceId });
+  };
+
+  return (
+    <>
+      <ConfirmDialog />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="sm" className="h-8 w-8" disabled={isPending}>
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="">
+          <Link href={`/workspaces/${workspaceId}`}>
+            <DropdownMenuItem className="font-HG text-sm cursor-pointer" inset={undefined}>
+              <HardriveIcon/>
+                Preview
+              </DropdownMenuItem>
+          </Link>
+          <Link href={`/workspaces/${workspaceId}/update`} className="w-full">
+            <DropdownMenuItem className="font-HG text-sm cursor-pointer" inset={undefined}>
+              <FilePenIcon/>
+                Update
+            </DropdownMenuItem>
+          </Link>
+          <DropdownMenuItem
+            className="font-HG text-sm cursor-pointer text-destructive"
+            inset={undefined}
+            disabled={isPending}
+            onClick={onDeleteClick}>
+            <TrashIcon/>
+              {isPending ? "Deleting" : "Delete"}
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
+  );
+}
 
 export const columns: ColumnDef<WorkspaceRow>[] = [
   {
@@ -93,33 +149,7 @@ export const columns: ColumnDef<WorkspaceRow>[] = [
   {
     accessorKey: "actions",
     header: ({ column }) => <HeaderColumnButton column={column}>Actions</HeaderColumnButton>,
-    cell: ({ row }) => (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="sm" className="h-8 w-8">
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="">
-          <Link href={`/workspaces/${row.original.id}`}>        
-            <DropdownMenuItem className="font-HG text-sm cursor-pointer" inset={undefined}>
-              <HardriveIcon/>
-                Preview
-              </DropdownMenuItem>
-          </Link>
-          <Link href={`/workspaces/${row.original.id}/update`} className="w-full">
-            <DropdownMenuItem className="font-HG text-sm cursor-pointer" inset={undefined}>
-              <FilePenIcon/>
-                Update
-            </DropdownMenuItem>
-          </Link>
-          <DropdownMenuItem className="font-HG text-sm cursor-pointer text-destructive" inset={undefined}>
-            <TrashIcon/>
-              Delete
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ),
+    cell: ({ row }) => <WorkspaceActions workspaceId={row.original.id} workspaceName={row.original.workspaceName} />,
     enableSorting: false,
   },
 ]

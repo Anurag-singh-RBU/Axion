@@ -17,6 +17,12 @@ export async function createAdminClient(){
 
         },
 
+        get databases(){
+
+            return new Databases(client);
+
+        },
+
     };
 
 }

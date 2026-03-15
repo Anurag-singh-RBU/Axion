@@ -6,6 +6,7 @@ import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from '@/conf
 import { ID, Permission, Query, Role } from 'node-appwrite';
 import { generateInviteCode } from '@/lib/utils';
 import { getMember } from '@/types/members/utils';
+import z from 'zod';
 
 const app = new Hono()
 .get("/" , sessionMiddleware , async (c) => {
@@ -45,6 +46,37 @@ const app = new Hono()
     return c.json({data : workspaces});
     
 })
+.get("/:workspaceId/invite-info/:code" , sessionMiddleware , async (c) => {
+
+    try {
+
+        const databases = c.get("databases");
+        const { workspaceId, code } = c.req.param();
+
+        const workspace = await databases.getDocument(
+
+            DATABASE_ID,
+            WORKSPACES_ID,
+            workspaceId
+
+        );
+
+        if (workspace.inviteCode !== code) {
+
+            return c.json({ data: { name: null, valid: false } });
+
+        }
+
+        return c.json({ data: { name: workspace.name, valid: true } });
+
+    } catch (error) {
+
+        console.error("Error getting invite info:", error);
+        return c.json({ data: { name: null, valid: false } });
+
+    }
+
+})
 .get("/:workspaceId" , sessionMiddleware , async (c) => {
 
     try {
@@ -76,6 +108,28 @@ const app = new Hono()
 
         console.error("Error fetching workspace:", error);
         return c.json({ error: "Failed to fetch workspace" }, 500);
+
+    }
+
+})
+
+.get("/:workspaceId/member" , sessionMiddleware , async (c) => {
+
+    try {
+
+        const databases = c.get("databases");
+        const user = c.get("user");
+
+        const workspaceId = c.req.param("workspaceId");
+
+        const member = await getMember(databases, workspaceId, user.$id);
+
+        return c.json({ data: member || null });
+
+    } catch (error) {
+
+        console.error("Error fetching member:", error);
+        return c.json({ data: null });
 
     }
 
@@ -277,5 +331,134 @@ const app = new Hono()
     }
 
 })
+.delete("/:workspaceId" , sessionMiddleware , async (c) => {
+
+    try {
+
+        const databases = c.get("databases");
+        const user = c.get("user");
+
+        const workspaceId = c.req.param("workspaceId");
+
+        const member = await getMember(databases , workspaceId , user.$id);
+
+        if(!member || member.role !== "ADMIN"){
+
+            return c.json({ error : "Unauthorized" } , 403);
+
+        }
+
+        await databases.deleteDocument(
+
+            DATABASE_ID,
+            WORKSPACES_ID,
+            workspaceId
+
+        );
+
+        return c.json({ data : "Workspace deleted successfully" });
+
+    } catch (error) {
+
+        console.error("Error deleting workspace :", error);
+        return c.json({ error: "Failed to delete workspace" }, 500);
+
+    }
+
+})
+.delete("/:workspaceId/reset-invite-code" , sessionMiddleware , async (c) => {
+
+    try {
+
+        const databases = c.get("databases");
+        const user = c.get("user");
+
+        const workspaceId = c.req.param("workspaceId");
+
+        const member = await getMember(databases , workspaceId , user.$id);
+
+        if(!member || member.role !== "ADMIN"){
+
+            return c.json({ error : "Unauthorized" } , 403);
+
+        }
+
+        const workspace = await databases.updateDocument(
+
+            DATABASE_ID,
+            WORKSPACES_ID,
+            workspaceId,
+            {
+
+                inviteCode : generateInviteCode(6),
+
+            }
+
+        );
+
+        return c.json({ data : workspace });
+
+    } catch (error) {
+
+        return c.json({ error: "Something went wrong !!" }, 500);
+
+    }
+
+})
+.post("/:workspaceId/join" , sessionMiddleware ,  zValidator("json" , z.object({ code : z.string() })) , async (c) => {
+
+    try {
+
+        const { workspaceId } = c.req.param();
+        const { code } = c.req.valid("json");
+
+        const databases = c.get("databases");
+        const user = c.get("user");
+
+        const member = await getMember(databases , workspaceId , user.$id);
+
+        if(member){
+
+            return c.json({ error : "Already a member of this workspace" } , 400);
+
+        }
+
+        const workspace = await databases.getDocument(
+
+            DATABASE_ID,
+            WORKSPACES_ID,
+            workspaceId
+
+        );
+
+        if(workspace.inviteCode !== code){
+
+            return c.json({ error : "Invalid invite code" } , 400);
+
+        }
+
+        await databases.createDocument(
+
+            DATABASE_ID,
+            MEMBERS_ID,
+            ID.unique(),
+            {
+                userId : user.$id,
+                workspaceId : workspaceId,
+                role : "MEMBER"
+            }
+
+        );
+
+        return c.json({ data : "Joined workspace successfully" });
+
+    } catch (error) {
+
+        console.error("Error joining workspace :", error);
+        return c.json({ error: "Failed to join workspace" }, 500);
+
+    }
+
+});
 
 export default app;

@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { workspaceSchema } from "../schema";
 import { useUpdateWorkspace } from "../api/use-update-workspace";
+import { useGetWorkspace } from "../api/use-workspace-by-id";
 import { DottedSeparator } from "../../../components/Dotted-Seperator";
 import Image from "next/image";
 import {
@@ -37,9 +38,129 @@ import {
   Settings,
   CheckSquare,
   Loader2,
+  Sparkles,
+  RefreshCcw,
+  Copy,
+  Check,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useResetInviteCode } from "../api/use-reset-invite-code";
+import { useConfirm } from "@/hooks/use-confirm";
+import { toast } from "sonner";
+
+function ResetInviteCodeSection({ workspaceId }) {
+
+  const { data: currentWorkspace } = useGetWorkspace(workspaceId || "");
+  const inviteCode = currentWorkspace?.inviteCode;
+
+  const fullInviteCode = inviteCode && typeof window !== "undefined"
+    ? `${window.location.origin}/workspaces/${workspaceId}/join/${inviteCode}`
+    : null;
+  const { mutate, isPending } = useResetInviteCode();
+  const [copied, setCopied] = useState(false);
+  const [ConfirmDialog, confirm] = useConfirm({
+    title: "Reset Invite Code",
+    message: "A new invite code will be generated. Old code will stop working immediately.",
+    confirmText: "Reset",
+    cancelText: "Cancel",
+    variant: "destructive",
+  });
+
+  const onReset = async () => {
+    if (!workspaceId || isPending) return;
+
+    const ok = await confirm();
+    if (!ok) return;
+
+    mutate({ workspaceId });
+  };
+
+  const onCopy = async () => {
+    if (!fullInviteCode) return;
+
+    try {
+      await navigator.clipboard.writeText(fullInviteCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1200);
+      toast.success("Invite code copied !!");
+    } catch {
+      toast.error("Failed to copy invite code !!");
+    }
+  };
+
+  return (
+    <Card className="mt-4 border border-violet-200 dark:border-violet-800/60 bg-linear-to-br from-violet-50 via-white to-cyan-50 dark:from-violet-950/30 dark:via-slate-950 dark:to-cyan-950/20 shadow-sm overflow-hidden">
+      <ConfirmDialog />
+      <CardContent className="px-3 py-3 sm:px-4 sm:py-4">
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="flex items-center gap-2">
+              <div className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-200">
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-bold text-blue-900 text-base font-FT tracking-wider dark:text-blue-200">
+                  Invite Code Controls
+                </h3>
+                <p className="text-[11px] sm:text-[12px] font-HG text-violet-700/90 dark:text-violet-200/90 leading-relaxed">
+                  Generate a fresh code anytime for better access security.
+                </p>
+              </div>
+            </div>
+
+            <Button
+              type="button"
+              size="sm"
+              onClick={onReset}
+              disabled={isPending || !workspaceId}
+              className="font-HG tracking-wide w-full sm:w-auto justify-center">
+              {isPending ? (
+                <>
+                  <Loader2 className="w-3 h-3 animate-spin mr-1.5" />
+                  Resetting
+                </>
+              ) : (
+                <>
+                  <RefreshCcw className="w-3.5 h-3.5 mr-1.5" />
+                  Reset Invite Code
+                </>
+              )}
+            </Button>
+          </div>
+
+          <div className="rounded-md border border-violet-200/80 dark:border-violet-700/60 bg-white/70 dark:bg-slate-950/50 px-3 py-2.5 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <p className="text-[10px] uppercase tracking-[0.16em] font-semibold text-violet-600 dark:text-violet-300">
+                Current Invite Code
+              </p>
+              <p className="text-xs font-JBM text-gray-600 dark:text-slate-200 truncate">
+                {fullInviteCode || "Not available"}
+              </p>
+            </div>
+
+            <Button
+              type="button"
+              size="sm"
+              disabled={!fullInviteCode}
+              onClick={onCopy}
+              className={`font-HG w-full sm:w-auto justify-center text-white border-0 ring-1 transition-all duration-300 active:scale-[0.96] ${copied
+                  ? "bg-linear-to-r from-emerald-500 to-teal-400 ring-emerald-400/50 hover:brightness-105"
+                  : "bg-linear-to-r from-violet-600 via-purple-500 to-violet-500 ring-violet-400/40 hover:brightness-110"
+                }`}>
+              {copied ? (
+                <Check className="w-3.5 h-3.5 mr-1.5 shrink-0" />
+              ) : (
+                <Copy className="w-3.5 h-3.5 mr-1.5 shrink-0" />
+              )}
+              {copied ? "Copied" : "Copy Link"}
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function WorkspaceUpdateForm({
   className,
@@ -392,8 +513,8 @@ export default function WorkspaceUpdateForm({
                                   >
                                     <div
                                       className={`w-10 h-10 rounded flex items-center justify-center ${isDragging
-                                          ? "bg-blue-100"
-                                          : "bg-slate-100 dark:bg-slate-800"
+                                        ? "bg-blue-100"
+                                        : "bg-slate-100 dark:bg-slate-800"
                                         }`}
                                     >
                                       {isDragging ? (
@@ -502,6 +623,10 @@ export default function WorkspaceUpdateForm({
                 </Form>
               </CardContent>
             </Card>
+
+            <ResetInviteCodeSection
+              workspaceId={workspaceId}
+            />
           </div>
 
           {/* Sidebar matches Form's Height */}
@@ -724,7 +849,7 @@ export default function WorkspaceUpdateForm({
                       <span className="block bg-yellow-50 rounded-md dark:bg-yellow-900/20 text-yellow-900 dark:text-yellow-100 px-3 py-4 text-xs mt-1 border border-yellow-200 dark:border-yellow-800 font-HG font-medium">
                         For guidance check the <b className="text-blue-800 dark:text-blue-300 mb-1">&nbsp;Docs</b>{" "}
                         <span className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200 rounded px-1 font-semibold ml-1 text-[11px]">New</span>
-                        <br className="mt-0.5"/>
+                        <br className="mt-0.5" />
                         Need more help ? <span className="text-violet-700 dark:text-violet-200 ml-0.5">Contact admin</span> anytime.
                       </span>
                     </div>
