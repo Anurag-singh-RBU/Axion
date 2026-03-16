@@ -1,12 +1,11 @@
-# Fix "Already a Member" Dialog Bug
+# Docs Scrollspy Fix Progress
 
 ## Steps:
-- [x] 1. Remove JoinPageDialog render from joinWorkspaceForm.jsx when member exists
-- [x] 2. Add inline member banner/button in joinWorkspaceForm.jsx 
-- [x] 3. Disable join button if already member
-- [x] 4. Test non-member flow: form shows without dialog
-- [x] 5. Test member flow: inline message shows, redirects to workspace
-- [x] 6. Verify no regressions in join success/redirect
-
-✅ Task complete: Fixed double membership check. Non-members see form (no unwanted dialog), members see inline banner with links.
+- [x] 1. Create TODO.md with plan steps
+- [x] 2. Read src/app/docs/docs-data.ts to understand section types/headings
+- [x] 3. Refreshed DocsContent.tsx content (ready for edits)
+- [x] 4. Edit DocsContent.tsx: add IDs to h2/h3 in renderSection
+- [x] 5. Update OnThisPage: track h2+h3, improve scrollspy logic, throttle, smooth scroll links
+- [x] 6. Test changes (dev server running on http://localhost:3001/docs, scrollspy now dynamically updates on scroll)
+- [x] 7. Mark complete, attempt_completion
 
